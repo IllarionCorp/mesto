@@ -1,2 +1,10 @@
 @import url(../vendor/normalize.css);
-@import url(../);
+@import url(../vendor/inter.css);
+@import url(../body/page/page.css);
+
+/* HEADER */
+@import url(../body/header/header.css);
+@import url(../body/header/__logo/header__logo.css);
+@import url(../body/header/__line/header__line.css);
+/* CONTENT */
+@import url(../body/content/content.css);
