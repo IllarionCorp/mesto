@@ -1,0 +1,4 @@
+.profile__nickname {
+    margin: 0;
+    grid-area: nickname;
+}

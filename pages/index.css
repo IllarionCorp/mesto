@@ -8,3 +8,21 @@
 @import url(../body/header/__line/header__line.css);
 /* CONTENT */
 @import url(../body/content/content.css);
+/* PROFILE */
+@import url(../body/profile/profile.css);
+@import url(../body/profile-info/profile-info.css);
+@import url(../body/profile/__avatar/profile__avatar.css);
+@import url(../body/profile/__button/profile__button.css);
+@import url(../body/profile/__nickname/profile__nickname.css);
+@import url(../body/profile/__profession/profile__profession.css);
+@import url(../body/add-button/add-button.css);
+@import url(../body/add-button/__image/add-button__image.css);
+@import url(../body/edite-button/edite-button.css);
+@import url(../body/edite-button/__image/edite-button__image.css);
+/* ELEMENTS */
+@import url(../body/elements/elements.css);
+@import url(../body/element/element.css);
+@import url(../body/element/__image/element__image.css);
+@import url(../body/element/__button/element__button.css);
+@import url(../body/element/__place-name/element__place-name.css);
+@import url(../body/element/__heart/element__heart.css);
