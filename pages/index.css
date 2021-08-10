@@ -23,6 +23,9 @@
 @import url(../body/elements/elements.css);
 @import url(../body/element/element.css);
 @import url(../body/element/__image/element__image.css);
-@import url(../body/element/__button/element__button.css);
+@import url(../body/element/__footer/element__footer.css);
 @import url(../body/element/__place-name/element__place-name.css);
 @import url(../body/element/__heart/element__heart.css);
+/* FOOTER */
+@import url(../footer/footer.css);
+@import url(../footer/__copyright/footer__copyright.css);

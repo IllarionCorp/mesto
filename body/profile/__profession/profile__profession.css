@@ -1,4 +1,8 @@
 .profile__profession {
     margin: 0;
     grid-area: profession;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
 }
