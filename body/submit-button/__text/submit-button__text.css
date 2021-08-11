@@ -1,14 +1,15 @@
-.footer__copyright {
-    margin: 0;
+.submit-button__text {
+    margin: 14px 0;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
-    color: #545454;
+    text-align: center;
+    color: #FFFFFF;
 }
 
-@media screen and (max-width: 768px) {
-    .footer__copyright {
+@media screen and (max-width: 600px) {
+    .submit-button__text {
         font-size: 14px;
         line-height: 17px;
     }

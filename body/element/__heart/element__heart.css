@@ -5,11 +5,13 @@
 }
 
 .element__heart:hover {
+    transition: 0.2s;
     opacity: 0.5;
     cursor: pointer;
 }
 
 .element__heart:active {
     opacity: 1;
+    fill-opacity: 1;
     fill: black;
 }

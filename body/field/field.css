@@ -1,0 +1,9 @@
+.field {
+    border: none;
+    padding: 0;
+    padding-top: 30px;
+}
+
+.field:first-of-type {
+    padding-top: 0;
+}
