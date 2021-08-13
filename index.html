@@ -9,21 +9,21 @@
 <body class="page">
   <div class="popup">
     <div class="popup__overlay"></div>
-    <form class="popup__container">
+    <div class="popup__container">
       <img src="images/Close_Icon.svg" class="popup__close-icon" alt="крестик для закрытия диалогового окна">
       <h2 class="popup__description">Редактировать профиль</h2>
-      <div class="fields">
+      <form class="fields">
         <fieldset class="field">
-          <input type="text" class="field__input">
+          <input type="text" id="name" class="field__input">
           <div class="field__line"></div>
         </fieldset>
         <fieldset class="field">
-          <input type="text" class="field__input">
+          <input type="text" id="job" class="field__input">
           <div class="field__line"></div>
         </fieldset>
         <button class="submit-button"><p class="submit-button__text">Сохранить</p></button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
   <header class="header">
     <img src="images/logo.svg" class="header__logo" alt="Лого место в шапке">
@@ -104,6 +104,8 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2021. Mesto Russia</p>
   </footer>
-  <script src="body/edite-button/edite-button.js"></script> 
+  <script src="scripts/add-button.js"></script>
+  <script src="scripts/edite-button.js"></script> 
+  <script src="scripts/popup__close-icon.js"></script>
 </body>
 </html>

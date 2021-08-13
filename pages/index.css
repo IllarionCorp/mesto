@@ -31,7 +31,6 @@
 @import url(../body/add-button/add-button.css);
 @import url(../body/add-button/__image/add-button__image.css);
 @import url(../body/edite-button/edite-button.css);
-@import url(../body/edite-button/edite-button.js);
 @import url(../body/edite-button/__image/edite-button__image.css);
 /* ELEMENTS */
 @import url(../body/elements/elements.css);
@@ -43,3 +42,7 @@
 /* FOOTER */
 @import url(../footer/footer.css);
 @import url(../footer/__copyright/footer__copyright.css);
+/* SCRIPTS */
+@import url(../scripts/add-button.js);
+@import url(../scripts/edite-button.js);
+@import url(../scripts/popup__close-icon.js);
