@@ -42,7 +42,3 @@
 /* FOOTER */
 @import url(../footer/footer.css);
 @import url(../footer/__copyright/footer__copyright.css);
-/* SCRIPTS */
-@import url(../scripts/add-button.js);
-@import url(../scripts/edite-button.js);
-@import url(../scripts/popup__close-icon.js);
