@@ -7,15 +7,12 @@ let submitButton = document.querySelector('.submit-button')
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
-    nameInput.value;
-    jobInput.value;
-
     let profileNickname = document.querySelector('.profile__nickname')
     let profileProfession = document.querySelector('.profile__profession')
-    
-    profileNickname.textContent = nameInput;
-    profileProfession.textContent = jobInput;
-    
+
+    profileNickname.textContent = nameInput.value;
+    profileProfession.textContent = jobInput.value;
+
 }
 
 function popupClosed() {
