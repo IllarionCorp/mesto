@@ -1,2 +1,44 @@
 @import url(../vendor/normalize.css);
-@import url(../);
+@import url(../vendor/inter.css);
+@import url(../body/page/page.css);
+
+/* POPUP */
+@import url(../body/popup/popup.css);
+@import url(../body/popup/_opened/popup_opened.css);
+@import url(../body/popup/__container/popup__container.css);
+@import url(../body/popup/__description/popup__description.css);
+@import url(../body/popup/__overlay/popup__overlay.css);
+@import url(../body/fields/fields.css);
+@import url(../body/field/field.css);
+@import url(../body/popup/__close-icon/popup__close-icon.css);
+@import url(../body/field/__input/field__input.css);
+@import url(../body/field/__line/field__line.css);
+@import url(../body/submit-button/submit-button.css);
+@import url(../body/submit-button/__text/submit-button__text.css);
+/* HEADER */
+@import url(../body/header/header.css);
+@import url(../body/header/__logo/header__logo.css);
+@import url(../body/header/__line/header__line.css);
+/* CONTENT */
+@import url(../body/content/content.css);
+/* PROFILE */
+@import url(../body/profile/profile.css);
+@import url(../body/profile-info/profile-info.css);
+@import url(../body/profile/__avatar/profile__avatar.css);
+@import url(../body/profile/__button/profile__button.css);
+@import url(../body/profile/__nickname/profile__nickname.css);
+@import url(../body/profile/__profession/profile__profession.css);
+@import url(../body/add-button/add-button.css);
+@import url(../body/add-button/__image/add-button__image.css);
+@import url(../body/edite-button/edite-button.css);
+@import url(../body/edite-button/__image/edite-button__image.css);
+/* ELEMENTS */
+@import url(../body/elements/elements.css);
+@import url(../body/element/element.css);
+@import url(../body/element/__image/element__image.css);
+@import url(../body/element/__footer/element__footer.css);
+@import url(../body/element/__place-name/element__place-name.css);
+@import url(../body/element/__heart/element__heart.css);
+/* FOOTER */
+@import url(../footer/footer.css);
+@import url(../footer/__copyright/footer__copyright.css);

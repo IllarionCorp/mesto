@@ -6,43 +6,110 @@
   <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
-<body>
-  <div class="page">
-    <header class="header">
-      <img src="images/logo.svg" class="logo" alt="Лого место в шапке">
-    </header>
-    <main class="content">
-      <section class="profile">
-        <img src="images/Avatar.png" class="avatar" alt="Аватар профиля">
-        <div class="profile-info">
-          <h1 class="nickname">Жак-Ив Кусто</h1>
-          <p class="profession">Исследоваетль океана</p>
-          <button class="edit-button">
-              <img src="images/pen.svg" class="edit-button__image" alt="Картинка с ручкой для окна редактирования профиля">
-          </button>
-        </div>
-        <button class="add-button">
-          <div class="add-button__border">
-            <img src="images/Vector.svg" class="add-buton__image">
-          </div>
+<body class="page">
+  <div class="popup">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+      <img src="images/Close_Icon.svg" class="popup__close-icon" alt="крестик для закрытия диалогового окна">
+      <h2 class="popup__description">Редактировать профиль</h2>
+      <form class="fields">
+        <fieldset class="field">
+          <input type="text" id="name" class="field__input">
+          <div class="field__line"></div>
+        </fieldset>
+        <fieldset class="field">
+          <input type="text" id="job" class="field__input">
+          <div class="field__line"></div>
+        </fieldset>
+        <button class="submit-button">
+          <p class="submit-button__text">Сохранить</p>
         </button>
-      </section>
+      </form>
+    </div>
+  </div>
+  <header class="header">
+    <img src="images/logo.svg" class="header__logo" alt="Лого место в шапке">
+    <div class="header__line"></div>
+  </header>
+  <main class="content">
+    <section class="profile">
+      <img src="images/Avatar.png" class="profile__avatar" alt="Аватар профиля">
+      <div class="profile-info">
+        <h1 class="profile__nickname">Жак-Ив Кусто</h1>
+        <p class="profile__profession">Исследоваетль океана</p>
+        <button class="profile__button edite-button">
+            <img src="images/pen.svg" class="edite-button__image" alt="Картинка с ручкой для окна редактирования профиля">
+        </button>
+      </div>
+      <button class="profile__button add-button">
+          <img src="images/Vector.svg" class="add-button__image">
+      </button>
+    </section>
 
-      <section class="elements">
-        <div class="element">
-          <img src="" class="elemnt__image">
+    <section class="elements">
+      <div class="element">
+        <img src="images/kirill-pershin-1088404-unsplash.png" class="element__image">
+        <div class="element__footer">
           <h2 class="element__place-name">
             Карачаевск
           </h2>
-          <button>
-            <img src="" class="element__heart" alt="Кнопка нравится">
-          </button>
+          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
         </div>
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2021. Mesto Russia</p>
-    </footer>
-  </div>
+      </div>
+      <div class="element">
+        <img src="images/kirill-pershin-1404681-unsplash.png" class="element__image">
+        <div class="element__footer">
+          <h2 class="element__place-name">
+            Гора Эльбрус
+          </h2>
+          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+        </div>
+      </div>
+      <div class="element">
+        <img src="images/kirill-pershin-1556355-unsplash.png" class="element__image">
+        <div class="element__footer">
+          <h2 class="element__place-name">
+            Домбай
+          </h2>
+          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+        </div>
+      </div>
+      <div class="element">
+        <img src="images/kirill-pershin-1404681-unsplash.png" class="element__image">
+        <div class="element__footer">
+          <h2 class="element__place-name">
+            Гора Эльбрус
+          </h2>
+          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+        </div>
+      </div>
+      <div class="element">
+        <img src="images/kirill-pershin-1556355-unsplash.png" class="element__image">
+        <div class="element__footer">
+          <h2 class="element__place-name">
+            Домбай
+          </h2>
+          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+        </div>
+      </div>
+      <div class="element">
+        <img src="images/kirill-pershin-1088404-unsplash.png" class="element__image">
+        <div class="element__footer">
+          <h2 class="element__place-name">
+            Карачаево-Черкессия
+          </h2>
+          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2021. Mesto Russia</p>
+  </footer>
+  <script src="scripts/add-button.js"></script>
+  <script src="scripts/edite-button.js"></script>
+  <script src="scripts/popup__close-icon.js"></script>
+  <script src="scripts/submit-button.js"></script>
+  <script src="scripts/fields.js"></script>
 </body>
 </html>
