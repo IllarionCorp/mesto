@@ -12,5 +12,5 @@
 * grid
 * Java Script
 
-Сайт доступен по адресу: https://illarioncorp.github.io/russian-travel/index.html
+Сайт доступен по адресу: https://illarioncorp.github.io/mesto/index.html
 
