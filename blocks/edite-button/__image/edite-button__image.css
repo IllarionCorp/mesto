@@ -1,4 +1,11 @@
 .edite-button__image {
-    max-width: 10px;
-    max-height: 10px;
+    width: 10px;
+    height: 10px;
+}
+
+@media screen and (max-width: 768px) {
+ .edite-button__image {
+     width: 7.5px;
+     height: 7.5px;
+ }
 }

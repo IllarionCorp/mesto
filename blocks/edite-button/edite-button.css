@@ -1,6 +1,15 @@
 .edite-button {
     grid-area: button;
     align-self: center;
-    max-width: 24px;
-    max-height: 24px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .edite-button {
+   align-self: center;
+   width: 18px;
+   height: 18px;
+  }
 }
