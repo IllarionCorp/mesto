@@ -1,6 +1,6 @@
 /* ADD BUTTON*/
 
-let addButton = document.querySelector('.add-button')
+const addButton = document.querySelector('.add-button')
 
 function addElement() {
     let elements = document.querySelector('.elements')
@@ -21,29 +21,25 @@ addButton.addEventListener('click', addElement);
 /*EDITE BUTTON*/
 
 let popup = document.querySelector('.popup');
-let editeButton = document.querySelector('.edite-button');
+const editeButton = document.querySelector('.edite-button')
 
 function popupOpened() {
-    if (popup.classList.contains('popup_opened') === false) {
-        popup.classList.add('popup_opened');
-    }
+    popup.classList.add('popup_opened');
 }
-
-editeButton.addEventListener('click', popupOpened);
-
-/*FIELDS*/
 
 let name = document.querySelector('#name')
 let job = document.querySelector('#job')
 let profileNickname = document.querySelector('.profile__nickname')
 let profileProfession = document.querySelector('.profile__profession')
-
-name.value = profileNickname.textContent;
+name.value =profileNickname.textContent;
 job.value = profileProfession.textContent;
+
+editeButton.addEventListener('click', popupOpened);
 
 /*POPUP CLOSE ICON*/
 
-let closeIcon = document.querySelector('.popup__close-icon');
+const closeIcon = document.querySelector('.popup__close-icon');
+const submitButton = document.querySelector('.submit-button');
 
 function popupClosed() {
     if (popup.classList.contains('popup_opened') === true) {
@@ -52,31 +48,21 @@ function popupClosed() {
 }
 
 closeIcon.addEventListener('click', popupClosed);
+submitButton.addEventListener('click', popupClosed);
+
 
 /*SUBMIT BUTTON*/
 
 let formElement = document.querySelector('.fields')
-let nameInput = formElement.querySelector('#name')
-let jobInput = formElement.querySelector('#job')
-let submitButton = document.querySelector('.submit-button')
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
-    let profileNickname = document.querySelector('.profile__nickname')
-    let profileProfession = document.querySelector('.profile__profession')
+    profileNickname.textContent = name.value;
+    profileProfession.textContent = job.value;
 
-    profileNickname.textContent = nameInput.value;
-    profileProfession.textContent = jobInput.value;
-
-}
-
-function popupClosed() {
-    if (popup.classList.contains('popup_opened') === true) {
-        popup.classList.remove('popup_opened');
-    }
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
-submitButton.addEventListener('click', popupClosed);
+
 
 
