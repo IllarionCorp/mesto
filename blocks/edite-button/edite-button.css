@@ -1,6 +1,9 @@
 .edite-button {
+    display: flex;
     grid-area: button;
     align-self: center;
+    align-items: center;
+    justify-content: center;
     width: 24px;
     height: 24px;
     padding: 0;

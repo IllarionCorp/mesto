@@ -1,19 +1,21 @@
 /* ADD BUTTON*/
 
-const addButton = document.querySelector('.add-button')
+const addButton = document.querySelector('.profile__button-add')
 
 function addElement() {
     let elements = document.querySelector('.elements')
     elements.insertAdjacentHTML('beforeend', `
     <div class="element">
-    <img src="images/kirill-pershin-1404681-unsplash.png" class="element__image">
-    <div class="element__footer">
-      <h2 class="element__place-name">
-        Гора Эльбрус
-      </h2>
-      <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
-    </div>
-  </div>`);
+        <img src="images/kirill-pershin-1088404-unsplash.png" class="element__image" alt="">
+        <div class="element__footer">
+          <h2 class="element__place-name">
+            Карачаевск
+          </h2>
+          <button type="button" class="element__like">
+           <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+          </button>
+        </div>
+      </div>`);
 }
 
 addButton.addEventListener('click', addElement);
@@ -21,7 +23,7 @@ addButton.addEventListener('click', addElement);
 /*EDITE BUTTON*/
 
 let popup = document.querySelector('.popup');
-const editeButton = document.querySelector('.edite-button')
+const editeButton = document.querySelector('.profile__button-edite')
 
 function popupOpened() {
     popup.classList.add('popup_opened');
@@ -39,7 +41,7 @@ editeButton.addEventListener('click', popupOpened);
 /*POPUP CLOSE ICON*/
 
 const closeIcon = document.querySelector('.popup__close-icon');
-const submitButton = document.querySelector('.submit-button');
+const submitButton = document.querySelector('.popup__submit-button');
 
 function popupClosed() {
     if (popup.classList.contains('popup_opened') === true) {

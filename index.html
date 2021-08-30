@@ -13,17 +13,15 @@
        <img src="images/Close_Icon.svg" class="popup__close-icon" alt="крестик для закрытия диалогового окна">
       </button>
       <h2 class="popup__description">Редактировать профиль</h2>
-      <form class="fields">
-        <fieldset class="field">
-          <input type="text" id="name" class="field__input">
-          <div class="field__line"></div>
-        </fieldset>
-        <fieldset class="field">
-          <input type="text" id="job" class="field__input">
-          <div class="field__line"></div>
-        </fieldset>
-        <button type="submit" class="submit-button">
-          <p class="submit-button__text">Сохранить</p>
+      <form name="fields" class="fields">
+        <div class="field">
+          <input name="name" type="text" id="name" class="field__input">
+        </div>
+        <div class="field">
+          <input name="job" type="text" id="job" class="field__input">
+        </div>
+        <button type="submit" class="popup__submit-button">
+          Сохранить
         </button>
       </form>
     </div>
@@ -35,15 +33,15 @@
   <main class="content">
     <section class="profile">
       <img src="images/Avatar.png" class="profile__avatar" alt="Аватар профиля">
-      <div class="profile-info">
+      <div class="profile__info">
         <h1 class="profile__nickname">Жак-Ив Кусто</h1>
-        <p class="profile__profession">Исследоваетль океана</p>
-        <button type="button" class="profile__button edite-button">
-            <img src="images/pen.svg" class="edite-button__image" alt="Картинка с ручкой для окна редактирования профиля">
+        <p class="profile__profession">Исследователь океана</p>
+        <button type="button" class="profile__button-edite">
+            <img src="images/pen.svg" class="profile__image-edite" alt="Картинка с ручкой для окна редактирования профиля">
         </button>
       </div>
-      <button type="button" class="profile__button add-button">
-          <img src="images/Vector.svg" class="add-button__image" alt="">
+      <button type="button" class="profile__button-add">
+          <img src="images/Vector.svg" class="profile__image-add" alt="Картинка с плюсиком">
       </button>
     </section>
 
@@ -54,52 +52,64 @@
           <h2 class="element__place-name">
             Карачаевск
           </h2>
-          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+          <button type="button" class="element__like">
+           <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+          </button>
         </div>
       </div>
       <div class="element">
-        <img src="images/kirill-pershin-1404681-unsplash.png" class="element__image" alt="">
+        <img src="images/kirill-pershin-1404681-unsplash.png" class="element__image" alt="Пользовательское изображение">
         <div class="element__footer">
           <h2 class="element__place-name">
             Гора Эльбрус
           </h2>
-          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+          <button type="button" class="element__like">
+           <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+          </button>
         </div>
       </div>
       <div class="element">
-        <img src="images/kirill-pershin-1556355-unsplash.png" class="element__image" alt="">
+        <img src="images/kirill-pershin-1556355-unsplash.png" class="element__image" alt="Пользовательское изображение">
         <div class="element__footer">
           <h2 class="element__place-name">
             Домбай
           </h2>
-          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+          <button type="button" class="element__like">
+           <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+          </button>
         </div>
       </div>
       <div class="element">
-        <img src="images/kirill-pershin-1404681-unsplash.png" class="element__image" alt="">
+        <img src="images/kirill-pershin-1404681-unsplash.png" class="element__image" alt="Пользовательское изображение">
         <div class="element__footer">
           <h2 class="element__place-name">
             Гора Эльбрус
           </h2>
-          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+          <button type="button" class="element__like">
+           <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+          </button>
         </div>
       </div>
       <div class="element">
-        <img src="images/kirill-pershin-1556355-unsplash.png" class="element__image" alt="">
+        <img src="images/kirill-pershin-1556355-unsplash.png" class="element__image" alt="Пользовательское изображение">
         <div class="element__footer">
           <h2 class="element__place-name">
             Домбай
           </h2>
-          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+          <button type="button" class="element__like">
+           <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+         </button>
         </div>
       </div>
       <div class="element">
-        <img src="images/kirill-pershin-1088404-unsplash.png" class="element__image" alt="">
+        <img src="images/kirill-pershin-1088404-unsplash.png" class="element__image" alt="Пользовательское изображение">
         <div class="element__footer">
           <h2 class="element__place-name">
             Карачаево-Черкессия
           </h2>
-          <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+          <button type="button" class="element__like">
+           <img src="images/heart.svg" class="element__heart" alt="Кнопка нравится">
+         </button>
         </div>
       </div>
     </section>

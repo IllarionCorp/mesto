@@ -7,8 +7,23 @@
     border-radius: 2px;
     background-color: black;
     cursor: pointer;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+    padding-top: 14px;
+    padding-bottom: 14px;
 }
 
 .submit-button:hover {
     opacity: 0.8;
+}
+
+@media screen and (max-width: 600px) {
+ .submit-button {
+     font-size: 14px;
+     line-height: 17px;
+ }
 }
