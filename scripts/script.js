@@ -30,18 +30,15 @@ closeIcon.addEventListener('click', popupClosed);
 
 /*SUBMIT BUTTON*/
 
-let formElement = document.querySelector('.fields')
-const submitButton = document.querySelector('.popup__submit-button')
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
     profileNickname.textContent = name.value;
     profileProfession.textContent = job.value;
-
+    popupClosed();
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
-submitButton.addEventListener('click', popupClosed);
+popup.addEventListener('submit',formSubmitHandler);
 
 
 
