@@ -10,8 +10,4 @@
     cursor: pointer;
 }
 
-.element__heart:active {
-    opacity: 1;
-    fill-opacity: 1;
-    fill: black;
-}
+
