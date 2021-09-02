@@ -44,11 +44,6 @@ profile.addEventListener('submit',formSubmitHandler);
 
 // ADD POPUP
 
-let title = document.querySelector('#tite')
-let link = document.querySelector('#link')
-let placeName = document.querySelector('.element__place-name')
-let elementImage = document.querySelector('.element__image')
-
 let add = document.querySelector('#add')
 const addButton = document.querySelector('.profile__button-add')
 
@@ -67,29 +62,62 @@ function popupClosedAdd() {
 
 closeIconAdd.addEventListener('click', popupClosedAdd);
 
-сonst cards = [
+// ADD POPUP FORM
+const cards = [
  {
-   name: 'Архыз',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
- },
- {
-   name: 'Челябинская область',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
- },
- {
-   name: 'Иваново',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
- },
- {
-   name: 'Камчатка',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
- },
- {
-   name: 'Холмогорский район',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
- },
- {
-   name: 'Байкал',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
- }
+  name: 'Архыз',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+},
+{
+  name: 'Челябинская область',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+},
+{
+  name: 'Иваново',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+},
+{
+  name: 'Камчатка',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+},
+{
+  name: 'Холмогорский район',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+},
+{
+  name: 'Байкал',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+}
 ];
+const elements = document.querySelector('.elements');
+
+cards.map(function (element){
+ const elementTemplate = document.querySelector('#card-template').content;
+ const cardsElement = elementTemplate.querySelector('.element').cloneNode(true);
+
+ cardsElement.querySelector('.element__image').src = element.link;
+ cardsElement.querySelector('.element__place-name').textContent = element.name;
+
+ elements.append(cardsElement);
+});
+
+function addCard(linkValue, nameValue) {
+ cards.splice(1, 0, {
+  name: nameValue,
+  link: linkValue
+ });
+}
+
+function formSubmitHandlerAdd (evt) {
+  evt.preventDefault();
+  const place = document.querySelector('#title');
+  const link = document.querySelector('#link');
+  addCard(link.value, place.value);
+  popupClosedAdd();
+}
+
+add.addEventListener('submit', formSubmitHandlerAdd);
+
+
+
+
