@@ -1,3 +1,5 @@
+// PROFILE POPUP
+
 let name = document.querySelector('#name')
 let job = document.querySelector('#job')
 let profileNickname = document.querySelector('.profile__nickname')
@@ -6,11 +8,11 @@ let profileProfession = document.querySelector('.profile__profession')
 
 /*EDITE BUTTON*/
 
-let popup = document.querySelector('.popup');
+let profile = document.querySelector('#profile');
 const editeButton = document.querySelector('.profile__button-edite')
 
 function popupOpened() {
-    popup.classList.add('popup_opened');
+    profile.classList.add('popup_opened');
     name.value = profileNickname.textContent;
     job.value = profileProfession.textContent;
 }
@@ -19,13 +21,13 @@ editeButton.addEventListener('click', popupOpened);
 
 /*POPUP CLOSE ICON*/
 
-const closeIcon = document.querySelector('.popup__close-icon');
+const closeIconProfile = document.querySelector('#profile-closed');
 
 function popupClosed() {
-    popup.classList.remove('popup_opened');
+    profile.classList.remove('popup_opened');
 }
 
-closeIcon.addEventListener('click', popupClosed);
+closeIconProfile.addEventListener('click', popupClosed);
 
 
 /*SUBMIT BUTTON*/
@@ -38,7 +40,29 @@ function formSubmitHandler (evt) {
     popupClosed();
 }
 
-popup.addEventListener('submit',formSubmitHandler);
+profile.addEventListener('submit',formSubmitHandler);
+
+// ADD POPUP
+
+let title = document.querySelector('#tite')
+let link = document.querySelector('#link')
+let placeName = document.querySelector('.element__place-name')
+let elementImage = document.querySelector('.element__image')
+
+let add = document.querySelector('#add')
+const addButton = document.querySelector('.profile__button-add')
+
+function popupOpenedAdd() {
+    add.classList.add('popup_opened');
+}
+
+addButton.addEventListener('click', popupOpenedAdd);
 
 
+const closeIconAdd = document.querySelector('#add-closed')
 
+function popupClosedAdd() {
+    add.classList.remove('popup_opened');
+}
+
+closeIconAdd.addEventListener('click', popupClosedAdd);
