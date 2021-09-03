@@ -102,7 +102,7 @@ cards.map(function (element){
 });
 
 function addCard(linkValue, nameValue) {
- cards.splice(1, 0, {
+ cards.unshift({
   name: nameValue,
   link: linkValue
  });
@@ -110,8 +110,8 @@ function addCard(linkValue, nameValue) {
 
 function formSubmitHandlerAdd (evt) {
   evt.preventDefault();
-  const place = document.querySelector('#title');
-  const link = document.querySelector('#link');
+  let place = document.querySelector('#title');
+  let link = document.querySelector('#link');
   addCard(link.value, place.value);
   popupClosedAdd();
 }
@@ -120,4 +120,34 @@ add.addEventListener('submit', formSubmitHandlerAdd);
 
 
 
+// cards.unshift({
+//  name: asfas,
+//  link: safas
+// });
 
+
+// LIKE
+cards.forEach(function (_elements){
+
+})
+const heart = document.querySelector('.element__heart');
+
+// function Like() {
+//  if (document.querySelector('.element__heart').src = "images/heart.svg" === true) {
+//   document.querySelector('.element__heart').src = "images/Active.svg";
+// }
+
+// if (document.querySelector('.element__heart').src = "images/Active.svg" === true) {
+//   document.querySelector('.element__heart').src = "images/heart.svg";
+// }
+// }
+
+
+function Like() {
+cards.forEach((element) => {
+  document.querySelector('.element__heart').src = "images/Active.svg";
+  return element;
+});
+}
+
+heart.addEventListener('click', Like);
