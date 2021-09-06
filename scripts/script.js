@@ -91,7 +91,7 @@ const initCards = [
 ];
 const elements = document.querySelector('.elements');
 
-initCards.map(function (element, number){
+initCards.map(function (element){
  const elementTemplate = document.querySelector('#card-template').content;
  const cardsElement = elementTemplate.querySelector('.element').cloneNode(true);
 
@@ -128,3 +128,12 @@ function popupClosedImg() {
 }
 
 closeImgBtn.addEventListener('click', popupClosedImg);
+
+//
+
+const like = document.querySelector('.element__heart');
+
+like.addEventListener('click', function (evt){
+ const target = evt.target;
+ if ()
+});
