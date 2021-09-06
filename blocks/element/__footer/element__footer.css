@@ -1,6 +1,5 @@
 .element__footer {
     display: flex;
-    width: 246px;
-    margin: 25px auto;
+    padding: 25px 20px;
     justify-content: space-between;
 }
