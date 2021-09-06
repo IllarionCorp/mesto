@@ -44,7 +44,7 @@ profile.addEventListener('submit',formSubmitHandler);
 
 // ADD POPUP
 
-let add = document.querySelector('#add')
+const add = document.querySelector('#add')
 const addButton = document.querySelector('.profile__button-add')
 
 function popupOpenedAdd() {
@@ -63,7 +63,7 @@ function popupClosedAdd() {
 closeIconAdd.addEventListener('click', popupClosedAdd);
 
 // ADD POPUP FORM
-const cards = [
+const initCards = [
  {
   name: 'Архыз',
   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -91,16 +91,16 @@ const cards = [
 ];
 const elements = document.querySelector('.elements');
 
-cards.map(function (element){
+initCards.map(function (element, number){
  const elementTemplate = document.querySelector('#card-template').content;
  const cardsElement = elementTemplate.querySelector('.element').cloneNode(true);
 
  cardsElement.querySelector('.element__image').src = element.link;
- cardsElement.querySelector('.element__place-name').textContent = element.name;
-
- elements.append(cardsElement);
+ cardsElement.querySelector('.element__place-name').textContent = element.name; 
+ elements.append(cardsElement); 
 });
 
+<<<<<<< HEAD
 
 function newCard() {
  const elementTemplate = document.querySelector('#card-template').content;
@@ -115,7 +115,19 @@ function newCard() {
 function formSubmitHandlerAdd (evt) {
   evt.preventDefault();
   newCard();
+=======
+function formSubmitHandlerAdd (evt) {
+  evt.preventDefault();
+  let place = document.querySelector('#title');
+  let link = document.querySelector('#link');
+  const elm = {
+    name: place.value,
+    link: link.value
+  };
+  initCards.unshift(elm);
+>>>>>>> 4ca95a40a89728bbb7fb0a69e6d0af1b63a10909
   popupClosedAdd();
+  return initCards;
 }
 
 add.addEventListener('submit', formSubmitHandlerAdd);
@@ -129,10 +141,8 @@ add.addEventListener('submit', formSubmitHandlerAdd);
 
 
 // LIKE
-cards.forEach(function (_elements){
 
-})
-const heart = document.querySelector('.element__heart');
+// const heart = document.querySelector('.element__heart');
 
 // function Like() {
 //  if (document.querySelector('.element__heart').src = "images/heart.svg" === true) {
@@ -145,11 +155,11 @@ const heart = document.querySelector('.element__heart');
 // }
 
 
-function Like() {
-cards.forEach((element) => {
-  document.querySelector('.element__heart').src = "images/Active.svg";
-  return element;
-});
-}
+// function Like() {
+// cards.forEach((element) => {
+//   document.querySelector('.element__heart').src = "images/Active.svg";
+//   return element;
+// });
+// }
 
-heart.addEventListener('click', Like);
+// heart.addEventListener('click', Like);
