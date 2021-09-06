@@ -119,34 +119,12 @@ function formSubmitHandlerAdd (evt) {
 
 add.addEventListener('submit', formSubmitHandlerAdd);
 
+/* POPUP IMAGE */
+const img = document.querySelector('#image')
+const closeImgBtn = document.querySelector('#image-closed')
 
+function popupClosedImg() {
+ img.classList.remove('popup_opened');
+}
 
-// cards.unshift({
-//  name: asfas,
-//  link: safas
-// });
-
-
-// LIKE
-
-// const heart = document.querySelector('.element__heart');
-
-// function Like() {
-//  if (document.querySelector('.element__heart').src = "images/heart.svg" === true) {
-//   document.querySelector('.element__heart').src = "images/Active.svg";
-// }
-
-// if (document.querySelector('.element__heart').src = "images/Active.svg" === true) {
-//   document.querySelector('.element__heart').src = "images/heart.svg";
-// }
-// }
-
-
-// function Like() {
-// cards.forEach((element) => {
-//   document.querySelector('.element__heart').src = "images/Active.svg";
-//   return element;
-// });
-// }
-
-// heart.addEventListener('click', Like);
+closeImgBtn.addEventListener('click', popupClosedImg);
