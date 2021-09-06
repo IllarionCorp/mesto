@@ -101,18 +101,20 @@ cards.map(function (element){
  elements.append(cardsElement);
 });
 
-function addCard(linkValue, nameValue) {
- cards.unshift({
-  name: nameValue,
-  link: linkValue
- });
+
+function newCard() {
+ const elementTemplate = document.querySelector('#card-template').content;
+ const cardsElement = elementTemplate.querySelector('.element').cloneNode(true);
+
+ cardsElement.querySelector('.element__image').src = document.querySelector('#link').value;
+ cardsElement.querySelector('.element__place-name').textContent = document.querySelector('#title').value;
+
+ elements.prepend(cardsElement);
 }
 
 function formSubmitHandlerAdd (evt) {
   evt.preventDefault();
-  let place = document.querySelector('#title');
-  let link = document.querySelector('#link');
-  addCard(link.value, place.value);
+  newCard();
   popupClosedAdd();
 }
 
