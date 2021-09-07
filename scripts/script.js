@@ -62,6 +62,41 @@ function popupClosedAdd() {
 
 closeIconAdd.addEventListener('click', popupClosedAdd);
 
+function interact() {
+ const elm = document.querySelectorAll('.element');
+
+ elm.forEach(function (el) {
+  const like = el.querySelector('.element__like');
+  like.addEventListener('click', function (evt) {
+  const target = evt.target;
+  target.classList.toggle('element__like_active');
+  console.log(evt.target);
+ });
+});
+
+elm.forEach(function (el) {
+ const img = el.querySelector('.element__image');
+ const label = el.querySelector('.element__place-name');
+ img.addEventListener('click', function(evt) {
+  const target = evt.target;
+  document.querySelector('.popup__image').src = target.src;
+   document.querySelector('.popup__label').textContent = target.nextElementSibling.nextElementSibling.firstElementChild.textContent;
+  popupOpenedImg();
+  console.log(evt.target);
+ });
+});
+
+/* TRASH */
+elm.forEach(function (el) {
+ const trash = el.querySelector('.element__trash');
+ trash.addEventListener('click', function(evt) {
+  const target = evt.target;
+  target.parentElement.parentElement.remove();
+  console.log(evt.target);
+ });
+});
+}
+// debugger;
 // ADD POPUP FORM
 const initCards = [
  {
@@ -89,35 +124,42 @@ const initCards = [
   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
 }
 ];
+
 const elements = document.querySelector('.elements');
 
-initCards.map(function (element){
+function addCards(element) {
  const elementTemplate = document.querySelector('#card-template').content;
  const cardsElement = elementTemplate.querySelector('.element').cloneNode(true);
 
  cardsElement.querySelector('.element__image').src = element.link;
  cardsElement.querySelector('.element__place-name').textContent = element.name;
- elements.append(cardsElement);
-});
 
 
-function newCard() {
- const elementTemplate = document.querySelector('#card-template').content;
- const cardsElement = elementTemplate.querySelector('.element').cloneNode(true);
+ return cardsElement;
+}
 
- cardsElement.querySelector('.element__image').src = document.querySelector('#link').value;
- cardsElement.querySelector('.element__place-name').textContent = document.querySelector('#title').value;
+function newCards() {
+ const title = document.querySelector('#title').value;
+ const link = document.querySelector('#link').value;
+ initCards.unshift({name: title, link: link});
+}
 
- elements.prepend(cardsElement);
+const newCards = [];
+
+function render() {
+ const addCard = initCards.map(addCards);
+ elements.append(...addCard);
+ interact();
 }
 
 function formSubmitHandlerAdd (evt) {
-  evt.preventDefault();
-  newCard();
-  popupClosedAdd();
+ evt.preventDefault();
+ newCards();
+ popupClosedAdd();
 }
 
 add.addEventListener('submit', formSubmitHandlerAdd);
+
 
 /* POPUP IMAGE */
 const img = document.querySelector('#image')
@@ -132,35 +174,4 @@ function popupClosedImg() {
 }
 
 closeImgBtn.addEventListener('click', popupClosedImg);
-
-/* LIKE */
-
-const elm = document.querySelectorAll('.element');
-
-elm.forEach(function (el) {
- const like = el.querySelector('.element__like');
- like.addEventListener('click', function (evt) {
-  const target = evt.target;
-  target.classList.toggle('element__like_active');
- });
-});
-
-elm.forEach(function (el) {
- const img = el.querySelector('.element__image');
- const label = el.querySelector('.element__place-name');
- img.addEventListener('click', function(evt) {
-  const target = evt.target;
-  document.querySelector('.popup__image').src = target.src;
-   document.querySelector('.popup__label').textContent = target.nextElementSibling.nextElementSibling.firstElementChild.textContent;
-  popupOpenedImg();
- });
-});
-
-/* TRASH */
-elm.forEach(function (el) {
- const trash = el.querySelector('.element__trash');
- trash.addEventListener('click', function(evt) {
-  const target = evt.target;
-  target.parentElement.parentElement.remove();
- });
-});
+// render();
