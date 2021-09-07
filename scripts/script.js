@@ -153,5 +153,14 @@ elm.forEach(function (el) {
   document.querySelector('.popup__image').src = target.src;
    document.querySelector('.popup__label').textContent = target.nextElementSibling.nextElementSibling.firstElementChild.textContent;
   popupOpenedImg();
- })
-})
+ });
+});
+
+/* TRASH */
+elm.forEach(function (el) {
+ const trash = el.querySelector('.element__trash');
+ trash.addEventListener('click', function(evt) {
+  const target = evt.target;
+  target.parentElement.parentElement.remove();
+ });
+});
