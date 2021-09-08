@@ -3,16 +3,13 @@
     height: 100vh;
     z-index: 2;
     position: fixed;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility .5s, opacity 0.5s linear;
+    display: none;
     justify-content: center;
     align-items: center;
     background-color:  rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
-    display: flex;
 }
 
 .popup:last-of-type {
-    background-color: rgba(0, 0, 0, 0.9);
+ background-color: rgba(0, 0, 0, 0.9);
 }

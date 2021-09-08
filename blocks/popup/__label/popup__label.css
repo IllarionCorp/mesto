@@ -1,8 +1,9 @@
 .popup__label {
-    margin: 0;
-    padding-top: 10px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 15px;
+ /* background-color: rgba(0, 0, 0, 0); */
+ margin: 0;
+ padding-top: 10px;
+ font-style: normal;
+ font-weight: normal;
+ font-size: 12px;
+ line-height: 15px;
 }
