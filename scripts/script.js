@@ -62,14 +62,20 @@ function popupClosedAdd() {
 
 closeIconAdd.addEventListener('click', popupClosedAdd);
 
-function interact() {
 
+const img = document.querySelector('#image')
+const closeImgBtn = document.querySelector('#image-closed')
 
-const i = 0;
-console.log(i);
+function popupOpenedImg() {
+ img.classList.add('popup_opened');
 }
-// debugger;
-// ADD POPUP FORM
+
+function popupClosedImg() {
+ img.classList.remove('popup_opened');
+}
+
+closeImgBtn.addEventListener('click', popupClosedImg);
+
 const initCards = [
  {
   name: 'Архыз',
@@ -99,18 +105,6 @@ const initCards = [
 
 const elements = document.querySelector('.elements');
 
-const img = document.querySelector('#image')
-const closeImgBtn = document.querySelector('#image-closed')
-
-function popupOpenedImg() {
- img.classList.add('popup_opened');
-}
-
-function popupClosedImg() {
- img.classList.remove('popup_opened');
-}
-
-closeImgBtn.addEventListener('click', popupClosedImg);
 
 const createCard = (element) => {
  const elementTemplate = document.querySelector('#card-template').content;
@@ -120,15 +114,15 @@ const createCard = (element) => {
  cardsElement.querySelector('.element__place-name').textContent = element.name;
 
 
-  const like = cardsElement.querySelector('.element__like');
+ const like = cardsElement.querySelector('.element__like');
   like.addEventListener('click', function (evt) {
   const target = evt.target;
   target.classList.toggle('element__like_active');
   console.log(evt.target);
-  });
+ });
 
- const img = cardsElement.querySelector('.element__image');
- img.addEventListener('click', function(evt) {
+ const image = cardsElement.querySelector('.element__image');
+ image.addEventListener('click', function(evt) {
   const target = evt.target;
   document.querySelector('.popup__image').src = target.src;
   document.querySelector('.popup__label').textContent = target.nextElementSibling.nextElementSibling.firstElementChild.textContent;
