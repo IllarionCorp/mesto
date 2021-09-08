@@ -118,7 +118,6 @@ const createCard = (element) => {
   like.addEventListener('click', function (evt) {
   const target = evt.target;
   target.classList.toggle('element__like_active');
-  console.log(evt.target);
  });
 
  const image = cardsElement.querySelector('.element__image');
@@ -127,14 +126,12 @@ const createCard = (element) => {
   document.querySelector('.popup__image').src = target.src;
   document.querySelector('.popup__label').textContent = target.nextElementSibling.nextElementSibling.firstElementChild.textContent;
   popupOpenedImg();
-  console.log(evt.target);
  });
 
  const trash = cardsElement.querySelector('.element__trash');
  trash.addEventListener('click', function(evt) {
   const target = evt.target;
   target.parentElement.parentElement.remove();
-  console.log(evt.target);
  });
 
  return cardsElement;
