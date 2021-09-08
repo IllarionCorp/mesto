@@ -62,14 +62,19 @@ function popupClosedAdd() {
 
 closeIconAdd.addEventListener('click', popupClosedAdd);
 
-function interact() {
+const img = document.querySelector('#image')
+const closeImgBtn = document.querySelector('#image-closed')
 
-
-const i = 0;
-console.log(i);
+function popupOpenedImg() {
+ img.classList.add('popup_opened');
 }
-// debugger;
-// ADD POPUP FORM
+
+function popupClosedImg() {
+ img.classList.remove('popup_opened');
+}
+
+closeImgBtn.addEventListener('click', popupClosedImg);
+
 const initCards = [
  {
   name: 'Архыз',
@@ -99,18 +104,7 @@ const initCards = [
 
 const elements = document.querySelector('.elements');
 
-const img = document.querySelector('#image')
-const closeImgBtn = document.querySelector('#image-closed')
 
-function popupOpenedImg() {
- img.classList.add('popup_opened');
-}
-
-function popupClosedImg() {
- img.classList.remove('popup_opened');
-}
-
-closeImgBtn.addEventListener('click', popupClosedImg);
 
 const createCard = (element) => {
  const elementTemplate = document.querySelector('#card-template').content;
