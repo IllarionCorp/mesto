@@ -114,8 +114,8 @@ const renderCard = (data, wrap) => {
   wrap.prepend(createCard(data))
  }
 
-  const ad = initCards.map(createCard);
-  elements.append(...ad);
+  const startCards = initCards.map(createCard);
+  elements.append(...startCards);
 
 function formSubmitHandlerAdd (evt) {
   evt.preventDefault();
@@ -124,7 +124,7 @@ function formSubmitHandlerAdd (evt) {
     link: document.querySelector('#link').value
   }, elements);
   closePopup(PopupAddImage);
-  evt.target.reset();
+  document.getElementById('add-cards').reset();
 }
 
 editButton.addEventListener('click',function () {
@@ -147,5 +147,3 @@ closePopup(imgPopup);
 });
 
 PopupAddImage.addEventListener('submit', formSubmitHandlerAdd);
-
-renderCard();
