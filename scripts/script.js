@@ -40,7 +40,7 @@ const initCards = [
 }
 ];
 
-const valueInput = () => {
+const setDefaultProfieValues = () => {
   nickname.value = profileNickname.textContent;
   job.value = profileProfession.textContent;
 }
@@ -54,8 +54,8 @@ const closePopup = (element) => {
 }
 
 editButton.addEventListener('click',function () {
+  setDefaultProfieValues();
   openPopup(ProfilePopup);
-  valueInput();
 });
 
 closeIconProfile.addEventListener('click', function ()  {
@@ -126,11 +126,6 @@ function formSubmitHandlerAdd (evt) {
   closePopup(PopupAddImage);
   document.getElementById('add-cards').reset();
 }
-
-editButton.addEventListener('click',function () {
- openPopup(ProfilePopup);
- valueInput();
-});
 
 addButton.addEventListener('click',function () {
  openPopup(PopupAddImage);
