@@ -20,4 +20,8 @@
     margin-bottom: 0;
 }
 
+.fields__input:invalid {
+    border-bottom: 1px solid #FF0000;
+}
+
 
