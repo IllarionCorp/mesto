@@ -17,6 +17,10 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/fields/__input-error/fields__input-error.css);
 @import url(../blocks/name-input-error/name-input-error.css);
+@import url(../blocks/job-input-error/job-input-error.css);
+@import url(../blocks/title-input-error/title-input-error.css);
+@import url(../blocks/link-input-error/link-input-error.css);
+@import url(../blocks/fields/__submit-button/_disable/fields__submit-button_disable.css);
 /* HEADER */
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);

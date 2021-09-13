@@ -13,6 +13,7 @@ const closeIconAdd = document.querySelector('#add-closed')
 const imgPopup = document.querySelector('#image')
 const closeImgBtn = document.querySelector('#image-closed')
 const elements = document.querySelector('.elements');
+const popupArr = Array.from(document.querySelectorAll('.popup'));
 const initCards = [
  {
   name: 'Архыз',
@@ -142,3 +143,12 @@ closePopup(imgPopup);
 });
 
 PopupAddImage.addEventListener('submit', formSubmitHandlerAdd);
+
+popupArr.forEach((evt) => {
+ const target = evt.target;
+ evt.addEventListener('click', () => {
+  if (target.classList.content() !== target.classList.content('popup__container')) {
+   closePopup(target.id);
+  }
+ });
+})
