@@ -1,7 +1,7 @@
 .fields {
     margin: 54px 36px 0;
-    justify-self: center;
     width: 358px;
+    position: relative;
 }
 
 @media screen and (max-width: 600px) {
