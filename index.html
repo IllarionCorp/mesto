@@ -15,9 +15,9 @@
       <h2 class="popup__description">Редактировать профиль</h2>
       <form name="fields" class="fields" novalidate>
         <input name="name" type="text" id="name" class="fields__input" minlength="2" maxlength="40">
-        <span class="name-input-error fields__input-error"></span>
+        <span class="name-error fields__input-error"></span>
         <input name="job" type="text" id="job" class="fields__input" minlength="2" maxlength="200">
-        <span class="job-input-error fields__input-error"></span>
+        <span class="job-error fields__input-error"></span>
         <button id="profile-button" type="submit" class="fields__submit-button">
           Сохранить
         </button>
@@ -32,9 +32,9 @@
       <h2 class="popup__description">Новое место</h2>
       <form id="add-cards" name="fields" class="fields" novalidate>
         <input name="title" type="text" id="title" class="fields__input" placeholder="Название" minlength="2" maxlength="30">
-        <span class="title-input-error fields__input-error"></span>
+        <span class="title-error fields__input-error"></span>
         <input name="link" type="url" id="link" class="fields__input" placeholder="Ссылка на картинку">
-        <span class="link-input-error fields__input-error"></span>
+        <span class="link-error fields__input-error"></span>
         <button id="add-button" type="submit" class="fields__submit-button">
           Создать
         </button>
@@ -88,6 +88,6 @@
     <p class="footer__copyright">&copy; 2021. Mesto Russia</p>
   </footer>
   <script src="scripts/script.js"></script>
-  <!-- <script src="script/validate.js"></script> -->
+  <script src="script/validate.js"></script>
 </body>
 </html>
