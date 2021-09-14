@@ -145,10 +145,10 @@ closePopup(imgPopup);
 PopupAddImage.addEventListener('submit', formSubmitHandlerAdd);
 
 popupArr.forEach((evt) => {
- const target = evt.target;
- evt.addEventListener('click', () => {
-  if (target.classList.content() !== target.classList.content('popup__container')) {
-   closePopup(target.id);
+ evt.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+   closePopup(document.querySelector(`#${evt.id}`));
   }
  });
-})
+});
+
