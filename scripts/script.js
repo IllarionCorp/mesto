@@ -14,6 +14,7 @@ const imgPopup = document.querySelector('#image')
 const closeImgBtn = document.querySelector('#image-closed')
 const elements = document.querySelector('.elements');
 const popupArr = Array.from(document.querySelectorAll('.popup'));
+let target = 0;
 const initCards = [
  {
   name: 'Архыз',
@@ -48,6 +49,10 @@ const setDefaultProfieValues = () => {
 
 const openPopup = (element) => {
     element.classList.add('popup_opened');
+    if (document.querySelector('.fields__submit-button_disable') !== null) {
+     document.addEventListener('submit',formSubmitHandlerProfile)
+    }
+
 }
 
 const closePopup = (element) => {
@@ -144,21 +149,30 @@ closePopup(imgPopup);
 
 PopupAddImage.addEventListener('submit', formSubmitHandlerAdd);
 
-popupArr.forEach((evt) => {
- const popupContainer = evt.querySelector('.popup__container');
- evt.addEventListener('keydown', function(e) {
-  console.log(e);
-  if (e.key === 'Escape') {
-   closePopup(evt);
-  }
-  evt.addEventListener('click', function(e) {
-  if (e !== document.classList.content('popup')) {
-    closePopup(evt);
-    console.log('1');
-   }
+const closeClickToEsc = (e) => {
+ if (e.key === 'Escape' && document.querySelector('.popup_opened') !== null) {
+  popupArr.forEach((el) => {
+    closePopup(el);
   });
+ };
+}
+ document.addEventListener('keydown', function(e) {
+  closeClickToEsc(e);
  });
- });
 
+const closeClickToOverlay = (e) => {
+ if (e.target !== document.querySelector('.popup__content') && document.querySelector('.popup_opened') !== null) {
+  closePopup(e.target);
+ }
+}
 
+  document.addEventListener('click', function(e) {
+   closeClickToOverlay(e);
+  });
 
+if (document.querySelector('.fields__submit-button_disable') !== null) {
+ document.addEventListener('submit',() => {
+  formSubmitHandlerAdd();
+  formSubmitHandlerProfile();
+ })
+}
