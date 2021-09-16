@@ -49,24 +49,21 @@ const setDefaultProfieValues = () => {
 
 const openPopup = (element) => {
     element.classList.add('popup_opened');
-    if (document.querySelector('.fields__submit-button_disable') !== null) {
-     document.addEventListener('submit',formSubmitHandlerProfile)
-    }
-
 }
 
 const closePopup = (element) => {
   element.classList.remove('popup_opened');
 }
 
-editButton.addEventListener('click',function () {
-  setDefaultProfieValues();
-  openPopup(ProfilePopup);
-});
-
-closeIconProfile.addEventListener('click', function ()  {
-  closePopup(ProfilePopup);
-});
+const clearForm = (e) => {
+ e.reset();
+ e.querySelectorAll('span').forEach(evt => {
+  evt.textContent = " ";
+ });
+ e.querySelectorAll('input').forEach(evt => {
+  evt.classList.remove('fields__input_type_error');
+ })
+}
 
 function formSubmitHandlerProfile (evt) {
     evt.preventDefault();
@@ -130,14 +127,28 @@ function formSubmitHandlerAdd (evt) {
     link: document.querySelector('#link').value
   }, elements);
   closePopup(PopupAddImage);
-  document.getElementById('add-cards').reset();
+  clearForm(evt.target);
 }
 
 addButton.addEventListener('click',function () {
+ const submitButton = PopupAddImage.querySelector('.fields__submit-button');
+ disableBtn(submitButton, 'fields__submit-button_disable')
+ clearForm(PopupAddImage.querySelector('form'));
  openPopup(PopupAddImage);
 });
 
-ProfilePopup.addEventListener('submit',formSubmitHandlerProfile);
+editButton.addEventListener('click',function () {
+ setDefaultProfieValues();
+ openPopup(ProfilePopup);
+});
+
+closeIconProfile.addEventListener('click', function ()  {
+ closePopup(ProfilePopup);
+});
+
+ProfilePopup.addEventListener('submit',() => {
+ formSubmitHandlerProfile();
+});
 
 closeIconAdd.addEventListener('click', function (){
  closePopup(PopupAddImage);
@@ -169,10 +180,3 @@ const closeClickToOverlay = (e) => {
   document.addEventListener('click', function(e) {
    closeClickToOverlay(e);
   });
-
-if (document.querySelector('.fields__submit-button_disable') !== null) {
- document.addEventListener('submit',() => {
-  formSubmitHandlerAdd();
-  formSubmitHandlerProfile();
- })
-}

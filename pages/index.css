@@ -16,10 +16,6 @@
 @import url(../blocks/popup/__label/popup__label.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/fields/__input-error/fields__input-error.css);
-@import url(../blocks/name-error/name-error.css);
-@import url(../blocks/job-error/job-error.css);
-@import url(../blocks/title-error/title-error.css);
-@import url(../blocks/link-error/link-error.css);
 @import url(../blocks/fields/__submit-button/_disable/fields__submit-button_disable.css);
 @import url(../blocks/fields/__input/_type_error/fields__input_type_error.css);
 @import url(../blocks/fields/__input-error/_active/fields__input-error_active.css);

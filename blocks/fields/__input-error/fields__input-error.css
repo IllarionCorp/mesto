@@ -8,4 +8,11 @@
     color: #FF0000;
     opacity: 0;
     transition: .2s;
+    position: absolute;
+    left: 0;
+    top: 32px;
+}
+
+.fields__input-error:last-of-type {
+    top: 95px;
 }
