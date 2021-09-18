@@ -33,12 +33,6 @@ const hasNotInputValues = (inputSelectorArr) => {
  });
 };
 
-const removeListners = (formElement) => {
- formElement.removeEventListener('submit', () => {
-  formSubmitHandlerProfile();
-  formSubmitHandlerAdd();
- })
-}
 
 const disableBtn = (buttonElement, inactiveButtonClass) => {
  buttonElement.disabled = true;

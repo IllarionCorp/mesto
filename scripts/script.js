@@ -4,10 +4,10 @@ const nickname = document.querySelector('#name')
 const job = document.querySelector('#job')
 const profileNickname = document.querySelector('.profile__nickname')
 const profileProfession = document.querySelector('.profile__profession')
-const ProfilePopup = document.querySelector('#profile');
+const profilePopup = document.querySelector('#profile');
 const editButton = document.querySelector('.profile__button-edite')
 const closeIconProfile = document.querySelector('#profile-closed');
-const PopupAddImage = document.querySelector('#add')
+const popupAddImage = document.querySelector('#add')
 const addButton = document.querySelector('.profile__button-add')
 const closeIconAdd = document.querySelector('#add-closed')
 const imgPopup = document.querySelector('#image')
@@ -69,7 +69,7 @@ function formSubmitHandlerProfile (evt) {
     evt.preventDefault();
     profileNickname.textContent = nickname.value;
     profileProfession.textContent = job.value;
-    closePopup(ProfilePopup);
+    closePopup(profilePopup);
 }
 
 const handleLikeClick = (el) => {
@@ -84,7 +84,7 @@ const handleTrashClick = (el) => {
  const trash = el.querySelector('.element__trash');
  trash.addEventListener('click', function(evt) {
   const target = evt.target;
-  target.parentElement.parentElement.remove();
+  target.closest('.element').remove();
  });
 };
 
@@ -93,7 +93,7 @@ const handleImageClick = (el) => {
  image.addEventListener('click', function(evt) {
   const target = evt.target;
   document.querySelector('.popup__image').src = target.src;
-  document.querySelector('.popup__label').textContent = target.nextElementSibling.nextElementSibling.firstElementChild.textContent;
+  document.querySelector('.popup__label').textContent = target.closest('.element').querySelector('.element__place-name').textContent;
   openPopup(imgPopup);
  });
 };
@@ -126,39 +126,37 @@ function formSubmitHandlerAdd (evt) {
     name: document.querySelector('#title').value,
     link: document.querySelector('#link').value
   }, elements);
-  closePopup(PopupAddImage);
+  closePopup(popupAddImage);
   clearForm(evt.target);
 }
 
 addButton.addEventListener('click',function () {
- const submitButton = PopupAddImage.querySelector('.fields__submit-button');
+ const submitButton = popupAddImage.querySelector('.fields__submit-button');
  disableBtn(submitButton, 'fields__submit-button_disable')
- clearForm(PopupAddImage.querySelector('form'));
- openPopup(PopupAddImage);
+ clearForm(popupAddImage.querySelector('form'));
+ openPopup(popupAddImage);
 });
 
 editButton.addEventListener('click',function () {
  setDefaultProfieValues();
- openPopup(ProfilePopup);
+ openPopup(profilePopup);
 });
 
 closeIconProfile.addEventListener('click', function ()  {
- closePopup(ProfilePopup);
+ closePopup(profilePopup);
 });
 
-ProfilePopup.addEventListener('submit',() => {
- formSubmitHandlerProfile();
-});
+profilePopup.addEventListener('submit', formSubmitHandlerProfile);
 
 closeIconAdd.addEventListener('click', function (){
- closePopup(PopupAddImage);
+ closePopup(popupAddImage);
 });
 
 closeImgBtn.addEventListener('click', function(){
 closePopup(imgPopup);
 });
 
-PopupAddImage.addEventListener('submit', formSubmitHandlerAdd);
+popupAddImage.addEventListener('submit', formSubmitHandlerAdd);
 
 const closeClickToEsc = (e) => {
  if (e.key === 'Escape' && document.querySelector('.popup_opened') !== null) {
