@@ -14,7 +14,7 @@ const imgPopup = document.querySelector('#image')
 const closeImgBtn = document.querySelector('#image-closed')
 const elements = document.querySelector('.elements');
 const popupArr = Array.from(document.querySelectorAll('.popup'));
-let target = 0;
+const ECS_CODE = 'Escape';
 const initCards = [
  {
   name: 'Архыз',
@@ -48,11 +48,15 @@ const setDefaultProfieValues = () => {
 }
 
 const openPopup = (element) => {
-    element.classList.add('popup_opened');
+  element.classList.add('popup_opened');
+  document.addEventListener('keydown', closeClickToEsc);
+  document.addEventListener('click', closeClickToOverlay);
 }
 
 const closePopup = (element) => {
   element.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeClickToEsc);
+  document.removeEventListener('click', closeClickToOverlay);
 }
 
 const clearForm = (e) => {
@@ -117,8 +121,9 @@ const renderCard = (data, wrap) => {
   wrap.prepend(createCard(data))
  }
 
-  const startCards = initCards.map(createCard);
-  elements.append(...startCards);
+  initCards.forEach((data) => {
+    renderCard(data, elements);
+  });
 
 function formSubmitHandlerAdd (evt) {
   evt.preventDefault();
@@ -158,23 +163,18 @@ closePopup(imgPopup);
 
 popupAddImage.addEventListener('submit', formSubmitHandlerAdd);
 
-const closeClickToEsc = (e) => {
- if (e.key === 'Escape' && document.querySelector('.popup_opened') !== null) {
-  popupArr.forEach((el) => {
-    closePopup(el);
-  });
- };
-}
- document.addEventListener('keydown', function(e) {
-  closeClickToEsc(e);
- });
-
-const closeClickToOverlay = (e) => {
- if (e.target !== document.querySelector('.popup__content') && document.querySelector('.popup_opened') !== null) {
-  closePopup(e.target);
+const closeClickToEsc = (event) => {
+ if (event.key === ECS_CODE) {
+  const openedPopup = document.querySelector('.popup_opened');
+  closePopup(openedPopup);
  }
 }
+ 
 
-  document.addEventListener('click', function(e) {
-   closeClickToOverlay(e);
-  });
+const closeClickToOverlay = (e) => {
+  if (e.target.classList.contains('popup_opened') === true && e.target.classList.contains('popup__container') === false) {
+    closePopup(e.target);
+  }
+}
+
+  
