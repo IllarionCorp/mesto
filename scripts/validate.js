@@ -47,7 +47,6 @@ const enableBtn = (buttonElement, inactiveButtonClass) => {
 const toggleBtn = (formElement, inputSelectorArr, submitButtonSelector, inactiveButtonClass) => {
  const buttonElement = formElement.querySelector(submitButtonSelector);
     if (hasInvalidInput(inputSelectorArr)) {
-        removeListners(formElement);
         disableBtn(buttonElement, inactiveButtonClass);
     } else {
         enableBtn(buttonElement, inactiveButtonClass);
