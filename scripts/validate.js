@@ -33,7 +33,6 @@ const hasNotInputValues = (inputSelectorArr) => {
  });
 };
 
-
 const disableBtn = (buttonElement, inactiveButtonClass) => {
  buttonElement.disabled = true;
  buttonElement.classList.add(inactiveButtonClass);

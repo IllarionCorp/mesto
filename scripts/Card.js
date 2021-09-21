@@ -86,3 +86,7 @@ class UserCards extends Card {
   return this._element;
  }
 }
+
+initCards.forEach(item => {
+
+})
