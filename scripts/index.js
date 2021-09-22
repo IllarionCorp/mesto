@@ -63,7 +63,7 @@ class Card {
 
  _handleImageClick() {
   const element = this._element.querySelector('.element');
-  document.querySelector('.popup__image').src = element.querySelector('.element__image').src;
+  // document.querySelector('.popup__image').src = element.querySelector('.element__image').src;
   document.querySelector('.popup__label').textContent = element.querySelector('.element__place-name').textContent;
   openPopup(document.querySelector('#image'));
  }
@@ -74,6 +74,8 @@ class Card {
 
   this._element.querySelector('.element__image').src = this._link;
   this._element.querySelector('.element__place-name').textContent = this._name;
+
+  console.log(this._element.querySelector('.element__trash').closest('.element'));
 
   return this._element;
  }
