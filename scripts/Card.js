@@ -1,5 +1,5 @@
-import { openPopup} from "./script.js";
-
+import { openPopup} from "./index.js";
+export {newCard};
 
 const initCards = [
  {
@@ -96,4 +96,4 @@ const newCard = (data) => {
  document.querySelector('.elements').prepend(cardsElement);
 }
 
-export {newCard}
+
