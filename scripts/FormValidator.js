@@ -6,6 +6,8 @@ class FormValidator {
   this._inactiveButtonClass = data.inactiveButtonClass;
   this._inputErrorClass = data.inputErrorClass;
   this._errorClass = data.errorClass;
+
+  this._form = form;
  }
 
  _showInputError(inputElement,errorElement, inputErrorClass, errorClass) {
@@ -53,7 +55,7 @@ class FormValidator {
 
  _toggleBtn(formElement, inputSelectorArr, submitButtonSelector, inactiveButtonClass) {
   const buttonElement = formElement.querySelector(submitButtonSelector);
-    if (this._hasInvalidInput(inputSelectorArr)) {
+    if (this._hasInvalidInput(inputSelectorArr) || this._hasNotInputValues(inputSelectorArr)) {
         this._disableBtn(buttonElement, inactiveButtonClass);
     } else {
         this._enableBtn(buttonElement, inactiveButtonClass);
@@ -67,25 +69,26 @@ class FormValidator {
   });
   const inputSelectorArr = Array.from(formElement.querySelectorAll(inputSelector))
   inputSelectorArr.forEach((inputElement) => {
-   inputElement.addEventListener('input', function () {
+   this._toggleBtn(formElement, inputSelectorArr, submitButtonSelector, inactiveButtonClass);
+   inputElement.addEventListener('input',() => {
     this._checkInputValidity(formElement, inputElement, inputErrorClass, errorClass);
     this._toggleBtn(formElement, inputSelectorArr, submitButtonSelector, inactiveButtonClass);
    });
   });
+
  }
 
  enableValidation() {
-  const formSelectorArr = Array.from(document.querySelectorAll(this._formSelector));
-  formSelectorArr.forEach((formElement) => {
-   this._setEvtListners(formElement,
+   this._setEvtListners(this._form,
     this._inputSelector,
     this._submitButtonSelector,
     this._inactiveButtonClass,
     this._inputErrorClass,
     this._errorClass);
-   });
- }
+  }
+
 }
 
+export {FormValidator };
 
 

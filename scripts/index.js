@@ -1,5 +1,6 @@
 import { newCard } from "./Card.js";
-export {openPopup, initCards};
+import { FormValidator } from "./FormValidator.js"
+export {openPopup};
 const nickname = document.querySelector('#name')
 const job = document.querySelector('#job')
 const profileNickname = document.querySelector('.profile__nickname')
@@ -12,35 +13,7 @@ const addButton = document.querySelector('.profile__button-add')
 const closeIconAdd = document.querySelector('#add-closed')
 const imgPopup = document.querySelector('#image')
 const closeImgBtn = document.querySelector('#image-closed')
-const elements = document.querySelector('.elements');
-const popupArr = Array.from(document.querySelectorAll('.popup'));
 const ECS_CODE = 'Escape';
-const initCards = [
- {
-  name: 'Архыз',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-},
-{
-  name: 'Челябинская область',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-},
-{
-  name: 'Иваново',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-},
-{
-  name: 'Камчатка',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-},
-{
-  name: 'Холмогорский район',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-},
-{
-  name: 'Байкал',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-}
-];
 
 const selectorsSettings = {
  formSelector: '.fields',
@@ -96,14 +69,16 @@ function formSubmitHandlerAdd (evt) {
 }
 
 addButton.addEventListener('click',function () {
- const submitButton = popupAddImage.querySelector('.fields__submit-button');
- disableBtn(submitButton, 'fields__submit-button_disable')
+ const editFormValidator = new FormValidator(selectorsSettings, popupAddImage); 
+ editFormValidator.enableValidation();
  clearForm(popupAddImage.querySelector('form'));
  openPopup(popupAddImage);
 });
 
 editButton.addEventListener('click',function () {
  setDefaultProfieValues();
+ const editFormValidator = new FormValidator(selectorsSettings, profilePopup);
+ editFormValidator.enableValidation();
  openPopup(profilePopup);
 });
 
