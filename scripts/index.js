@@ -1,6 +1,5 @@
 import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js"
-
+import { openPopup, closePopup } from "./utils.js";
 const nickname = document.querySelector('#name')
 const job = document.querySelector('#job')
 const profileNickname = document.querySelector('.profile__nickname')
@@ -68,28 +67,8 @@ const setDefaultProfieValues = () => {
   job.value = profileProfession.textContent;
 }
 
- const openPopup = (element) => {
-  const editFormValidator = new FormValidator(selectorsSettings, element);
-  editFormValidator.enableValidation();
-  element.classList.add('popup_opened');
-  document.addEventListener('keydown', closeClickToEsc);
-  document.addEventListener('click', closeClickToOverlay);
-}
-
-const closePopup = (element) => {
-  element.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeClickToEsc);
-  document.removeEventListener('click', closeClickToOverlay);
-}
-
 const clearForm = (form) => {
  form.reset();
- form.querySelectorAll('span').forEach(evt => {
-  evt.textContent = " ";
- });
- form.querySelectorAll('input').forEach(evt => {
-  evt.classList.remove('fields__input_type_error');
- })
 }
 
 function formSubmitHandlerProfile (evt) {
@@ -134,13 +113,6 @@ closePopup(imgPopup);
 
 popupAddImage.addEventListener('submit', formSubmitHandlerAdd);
 
-const closeClickToEsc = (event) => {
- if (event.key === ECS_CODE) {
-  const openedPopup = document.querySelector('.popup_opened');
-  closePopup(openedPopup);
- }
-}
-
 
 const closeClickToOverlay = (e) => {
   if (e.target.classList.contains('popup_opened') === true && e.target.classList.contains('popup__container') === false) {
@@ -148,4 +120,4 @@ const closeClickToOverlay = (e) => {
   }
 }
 
-export {openPopup};
+export { selectorsSettings, closeClickToOverlay, ECS_CODE };

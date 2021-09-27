@@ -1,7 +1,4 @@
-import { openPopup } from "./index.js";
-
-
-
+import { openPopup } from "./utils.js";
 
 class Card {
  constructor(data, template){
@@ -58,8 +55,5 @@ class Card {
   return this._element;
  }
 }
-
-
-
 
 export {Card};
