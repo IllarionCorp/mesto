@@ -1,6 +1,6 @@
-import { newCard } from "./Card.js";
+import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js"
-export {openPopup};
+
 const nickname = document.querySelector('#name')
 const job = document.querySelector('#job')
 const profileNickname = document.querySelector('.profile__nickname')
@@ -15,6 +15,33 @@ const imgPopup = document.querySelector('#image')
 const closeImgBtn = document.querySelector('#image-closed')
 const ECS_CODE = 'Escape';
 
+const initCards = [
+ {
+  name: 'Архыз',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+},
+{
+  name: 'Челябинская область',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+},
+{
+  name: 'Иваново',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+},
+{
+  name: 'Камчатка',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+},
+{
+  name: 'Холмогорский район',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+},
+{
+  name: 'Байкал',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+}
+];
+
 const selectorsSettings = {
  formSelector: '.fields',
  inputSelector: '.fields__input',
@@ -24,12 +51,26 @@ const selectorsSettings = {
  errorClass: 'fields__input-error_active'
 }
 
+initCards.forEach(item => {
+ const card = new Card(item, document.querySelector('#card-template'));
+ const cardsElement = card.generateCard();
+ document.querySelector('.elements').append(cardsElement);
+})
+
+const newCard = (data) => {
+const card = new Card(data, document.querySelector('#card-template'));
+const cardsElement = card.generateCard();
+document.querySelector('.elements').prepend(cardsElement);
+}
+
 const setDefaultProfieValues = () => {
   nickname.value = profileNickname.textContent;
   job.value = profileProfession.textContent;
 }
 
  const openPopup = (element) => {
+  const editFormValidator = new FormValidator(selectorsSettings, element);
+  editFormValidator.enableValidation();
   element.classList.add('popup_opened');
   document.addEventListener('keydown', closeClickToEsc);
   document.addEventListener('click', closeClickToOverlay);
@@ -41,12 +82,12 @@ const closePopup = (element) => {
   document.removeEventListener('click', closeClickToOverlay);
 }
 
-const clearForm = (e) => {
- e.reset();
- e.querySelectorAll('span').forEach(evt => {
+const clearForm = (form) => {
+ form.reset();
+ form.querySelectorAll('span').forEach(evt => {
   evt.textContent = " ";
  });
- e.querySelectorAll('input').forEach(evt => {
+ form.querySelectorAll('input').forEach(evt => {
   evt.classList.remove('fields__input_type_error');
  })
 }
@@ -65,20 +106,15 @@ function formSubmitHandlerAdd (evt) {
     link: document.querySelector('#link').value
   });
   closePopup(popupAddImage);
-  clearForm(evt.target);
 }
 
 addButton.addEventListener('click',function () {
- const editFormValidator = new FormValidator(selectorsSettings, popupAddImage); 
- editFormValidator.enableValidation();
  clearForm(popupAddImage.querySelector('form'));
  openPopup(popupAddImage);
 });
 
 editButton.addEventListener('click',function () {
  setDefaultProfieValues();
- const editFormValidator = new FormValidator(selectorsSettings, profilePopup);
- editFormValidator.enableValidation();
  openPopup(profilePopup);
 });
 
@@ -111,3 +147,5 @@ const closeClickToOverlay = (e) => {
     closePopup(e.target);
   }
 }
+
+export {openPopup};

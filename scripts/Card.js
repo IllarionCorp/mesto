@@ -1,42 +1,17 @@
 import { openPopup } from "./index.js";
-export {newCard};
 
-const initCards = [
-  {
-   name: 'Архыз',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
- },
- {
-   name: 'Челябинская область',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
- },
- {
-   name: 'Иваново',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
- },
- {
-   name: 'Камчатка',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
- },
- {
-   name: 'Холмогорский район',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
- },
- {
-   name: 'Байкал',
-   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
- }
- ];
+
+
 
 class Card {
- constructor(data){
+ constructor(data, template){
   this._name = data.name;
   this._link = data.link;
+  this._template = template;
  }
 
  _getTemplate() {
-  const cardElement = document
-   .querySelector('#card-template')
+  const cardElement = this._template
    .content
    .querySelector('.element')
    .cloneNode(true);
@@ -64,12 +39,12 @@ class Card {
  }
 
  _handleTrashClick() {
-  this._element.querySelector('.element__trash').closest('.element').remove();
+  this._element.remove();
  }
 
  _handleImageClick() {
-  document.querySelector('.popup__image').src = this._element.querySelector('.element__image').src;
-  document.querySelector('.popup__label').textContent = this._element.querySelector('.element__place-name').textContent;
+  document.querySelector('.popup__image').src = this._link;
+  document.querySelector('.popup__label').textContent = this._name;
   openPopup(document.querySelector('#image'));
  }
 
@@ -84,16 +59,7 @@ class Card {
  }
 }
 
-initCards.forEach(item => {
-  const card = new Card(item);
-  const cardsElement = card.generateCard();
-  document.querySelector('.elements').append(cardsElement);
-})
-
-const newCard = (data) => {
- const card = new Card(data);
- const cardsElement = card.generateCard();
- document.querySelector('.elements').prepend(cardsElement);
-}
 
 
+
+export {Card};
