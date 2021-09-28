@@ -1,5 +1,6 @@
 import { Card } from "./Card.js";
 import { openPopup, closePopup } from "./utils.js";
+import { FormValidator } from "./FormValidator.js"
 const nickname = document.querySelector('#name')
 const job = document.querySelector('#job')
 const profileNickname = document.querySelector('.profile__nickname')
@@ -13,6 +14,7 @@ const closeIconAdd = document.querySelector('#add-closed')
 const imgPopup = document.querySelector('#image')
 const closeImgBtn = document.querySelector('#image-closed')
 const ECS_CODE = 'Escape';
+const cardTemplateSelector = '#card-template';
 
 const initCards = [
  {
@@ -50,21 +52,40 @@ const selectorsSettings = {
  errorClass: 'fields__input-error_active'
 }
 
-initCards.forEach(item => {
- const card = new Card(item, document.querySelector('#card-template'));
+const profileFormValidator = new FormValidator(selectorsSettings, profilePopup.querySelector('.fields'));
+profileFormValidator.enableValidation();
+profileFormValidator.clearFormError();
+
+const addImageFormValidator = new FormValidator(selectorsSettings, popupAddImage.querySelector('.fields'));
+addImageFormValidator.enableValidation();
+addImageFormValidator.clearFormError();
+
+const initGenerateCards = (item, template) => {
+ const card = new Card(item, template);
  const cardsElement = card.generateCard();
+
+ return cardsElement;
+}
+
+initCards.forEach(item => {
+ const cardsElement =  initGenerateCards(item, cardTemplateSelector)
  document.querySelector('.elements').append(cardsElement);
 })
 
-const newCard = (data) => {
-const card = new Card(data, document.querySelector('#card-template'));
-const cardsElement = card.generateCard();
-document.querySelector('.elements').prepend(cardsElement);
+const createNewCard = (item, template) => {
+ const cardsElement =  initGenerateCards(item, template)
+ document.querySelector('.elements').prepend(cardsElement);
+}
+
+const closeClickToOverlay = (e) => {
+  if (e.target.classList.contains('popup_opened') === true && e.target.classList.contains('popup__container') === false) {
+    closePopup(e.target);
+  }
 }
 
 const setDefaultProfieValues = () => {
-  nickname.value = profileNickname.textContent;
-  job.value = profileProfession.textContent;
+ nickname.value = profileNickname.textContent;
+ job.value = profileProfession.textContent;
 }
 
 const clearForm = (form) => {
@@ -80,10 +101,10 @@ function formSubmitHandlerProfile (evt) {
 
 function formSubmitHandlerAdd (evt) {
   evt.preventDefault();
-  newCard({
+  createNewCard({
     name: document.querySelector('#title').value,
     link: document.querySelector('#link').value
-  });
+  }, cardTemplateSelector);
   closePopup(popupAddImage);
 }
 
@@ -91,6 +112,9 @@ addButton.addEventListener('click',function () {
  clearForm(popupAddImage.querySelector('form'));
  openPopup(popupAddImage);
 });
+
+profilePopup.addEventListener('click', closeClickToOverlay);
+popupAddImage.addEventListener('click', closeClickToOverlay);
 
 editButton.addEventListener('click',function () {
  setDefaultProfieValues();
@@ -114,10 +138,6 @@ closePopup(imgPopup);
 popupAddImage.addEventListener('submit', formSubmitHandlerAdd);
 
 
-const closeClickToOverlay = (e) => {
-  if (e.target.classList.contains('popup_opened') === true && e.target.classList.contains('popup__container') === false) {
-    closePopup(e.target);
-  }
-}
+
 
 export { selectorsSettings, closeClickToOverlay, ECS_CODE };

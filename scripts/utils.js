@@ -1,17 +1,8 @@
-import { FormValidator } from "./FormValidator.js";
-import { selectorsSettings, closeClickToOverlay, ECS_CODE } from "./index.js";
+import { closeClickToOverlay, ECS_CODE } from "./index.js";
 
 const openPopup = (element) => {
-    const form = element.querySelector('form');
-    if (form !== null) {
-      const editFormValidator = new FormValidator(selectorsSettings, form);
-      editFormValidator.enableValidation();
-      editFormValidator.clearFormError();
-    }
-    element.classList.add('popup_opened');
-    document.addEventListener('keydown', closeClickToEsc);
-    document.addEventListener('click', closeClickToOverlay);
-    
+  element.classList.add('popup_opened');
+  document.addEventListener('keydown', closeClickToEsc);
 }
 
 const closePopup = (element) => {
