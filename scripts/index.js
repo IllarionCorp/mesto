@@ -52,14 +52,6 @@ const selectorsSettings = {
  errorClass: 'fields__input-error_active'
 }
 
-const profileFormValidator = new FormValidator(selectorsSettings, profilePopup.querySelector('.fields'));
-profileFormValidator.enableValidation();
-profileFormValidator.clearFormError();
-
-const addImageFormValidator = new FormValidator(selectorsSettings, popupAddImage.querySelector('.fields'));
-addImageFormValidator.enableValidation();
-addImageFormValidator.clearFormError();
-
 const initGenerateCards = (item, template) => {
  const card = new Card(item, template);
  const cardsElement = card.generateCard();
@@ -91,6 +83,13 @@ const setDefaultProfieValues = () => {
 const clearForm = (form) => {
  form.reset();
 }
+const profileFormValidator = new FormValidator(selectorsSettings, profilePopup.querySelector('form'));
+profileFormValidator.enableValidation();
+profileFormValidator.clearFormError();
+
+const addImageFormValidator = new FormValidator(selectorsSettings, popupAddImage.querySelector('form'));
+addImageFormValidator.enableValidation();
+addImageFormValidator.clearFormError();
 
 function formSubmitHandlerProfile (evt) {
     evt.preventDefault();
@@ -115,6 +114,7 @@ addButton.addEventListener('click',function () {
 
 profilePopup.addEventListener('click', closeClickToOverlay);
 popupAddImage.addEventListener('click', closeClickToOverlay);
+imgPopup.addEventListener('click', closeClickToOverlay);
 
 editButton.addEventListener('click',function () {
  setDefaultProfieValues();
@@ -136,8 +136,6 @@ closePopup(imgPopup);
 });
 
 popupAddImage.addEventListener('submit', formSubmitHandlerAdd);
-
-
 
 
 export { selectorsSettings, closeClickToOverlay, ECS_CODE };

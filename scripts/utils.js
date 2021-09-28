@@ -1,4 +1,4 @@
-import { closeClickToOverlay, ECS_CODE } from "./index.js";
+import { ECS_CODE } from "./index.js";
 
 const openPopup = (element) => {
   element.classList.add('popup_opened');
