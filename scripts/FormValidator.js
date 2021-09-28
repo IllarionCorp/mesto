@@ -55,7 +55,7 @@ class FormValidator {
  }
 
  _toggleBtn() {
-    if (this._hasInvalidInput() === true || this._hasNotInputValues() === true) {
+    if (this._hasInvalidInput() || this._hasNotInputValues()) {
         this._disableBtn();
     } else {
         this._enableBtn();
