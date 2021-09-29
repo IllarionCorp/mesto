@@ -15,7 +15,6 @@ const imgPopup = document.querySelector('#image')
 const closeImgBtn = document.querySelector('#image-closed')
 const ECS_CODE = 'Escape';
 const cardTemplateSelector = '#card-template';
-const popupAddImageForm = popupAddImage.querySelector('form');
 
 const initCards = [
  {
@@ -85,7 +84,7 @@ const clearForm = (form) => {
  form.reset();
 }
 const profileFormValidator = new FormValidator(selectorsSettings, profilePopup.querySelector('form'));
-const addImageFormValidator = new FormValidator(selectorsSettings, popupAddImageForm);
+const addImageFormValidator = new FormValidator(selectorsSettings, popupAddImage.querySelector('form'));
 
 function formSubmitHandlerProfile (evt) {
     evt.preventDefault();
@@ -101,14 +100,12 @@ function formSubmitHandlerAdd (evt) {
     link: document.querySelector('#link').value
   }, cardTemplateSelector);
   closePopup(popupAddImage);
-  clearForm(popupAddImageForm);
 }
 
 addButton.addEventListener('click',function () {
  clearForm(popupAddImage.querySelector('form'));
+ addImageFormValidator.validatePopupOnOpen();
  openPopup(popupAddImage);
- addImageFormValidator.enableValidation();
- addImageFormValidator.clearFormError();
 });
 
 profilePopup.addEventListener('click', closeClickToOverlay);
@@ -117,9 +114,8 @@ imgPopup.addEventListener('click', closeClickToOverlay);
 
 editButton.addEventListener('click',function () {
  setDefaultProfieValues();
+ profileFormValidator.validatePopupOnOpen();
  openPopup(profilePopup);
- profileFormValidator.enableValidation()
- profileFormValidator.clearFormError();
 });
 
 closeIconProfile.addEventListener('click', function ()  {
@@ -138,5 +134,9 @@ closePopup(imgPopup);
 
 popupAddImage.addEventListener('submit',formSubmitHandlerAdd);
 
+addImageFormValidator.enableValidation();
+addImageFormValidator.clearFormError();
+profileFormValidator.enableValidation()
+profileFormValidator.clearFormError();
 
 export { selectorsSettings, closeClickToOverlay, ECS_CODE };

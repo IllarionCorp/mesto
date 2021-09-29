@@ -75,6 +75,10 @@ class FormValidator {
   });
  }
 
+ validatePopupOnOpen() {
+  this._toggleBtn();
+ }
+
  clearFormError() {
   this._inputList.forEach((inputElement) => {
     this._hideInputError(inputElement);
