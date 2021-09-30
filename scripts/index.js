@@ -104,7 +104,7 @@ function formSubmitHandlerAdd (evt) {
 
 addButton.addEventListener('click',function () {
  clearForm(popupAddImage.querySelector('form'));
- addImageFormValidator.validatePopupOnOpen();
+ addImageFormValidator.toggleBtn();
  openPopup(popupAddImage);
 });
 
@@ -114,7 +114,8 @@ imgPopup.addEventListener('click', closeClickToOverlay);
 
 editButton.addEventListener('click',function () {
  setDefaultProfieValues();
- profileFormValidator.validatePopupOnOpen();
+ profileFormValidator.clearFormError();
+ profileFormValidator.toggleBtn();
  openPopup(profilePopup);
 });
 
@@ -135,8 +136,6 @@ closePopup(imgPopup);
 popupAddImage.addEventListener('submit',formSubmitHandlerAdd);
 
 addImageFormValidator.enableValidation();
-addImageFormValidator.clearFormError();
-profileFormValidator.enableValidation()
-profileFormValidator.clearFormError();
+profileFormValidator.enableValidation();
 
 export { selectorsSettings, closeClickToOverlay, ECS_CODE };

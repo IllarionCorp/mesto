@@ -4,11 +4,11 @@ class Card {
  constructor(data, template){
   this._name = data.name;
   this._link = data.link;
-  this._template = template;
+  this._templateSelector = template;
  }
 
  _getTemplate() {
-  const template = document.querySelector(this._template);  
+  const template = document.querySelector(this._templateSelector);
   const cardElement = template
    .content
    .querySelector('.element')
