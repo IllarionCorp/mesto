@@ -1,4 +1,4 @@
-import { openPopup } from "./utils.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 export default class Card {
  constructor(data, template){
@@ -41,9 +41,10 @@ export default class Card {
  }
 
  _handleImageClick() {
-  document.querySelector('.popup__image').src = this._link;
-  document.querySelector('.popup__label').textContent = this._name;
-  openPopup(document.querySelector('#image'));
+     this._popupImg = new PopupWithImage('#image', this._link, this._name).open();
+//   document.querySelector('.popup__image').src = this._link;
+//   document.querySelector('.popup__label').textContent = this._name;
+//   openPopup(document.querySelector('#image'));
  }
 
  generateCard() {

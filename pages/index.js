@@ -1,6 +1,6 @@
-import { Card } from "../scripts/Card.js";
+import Card from "../components/Card.js";
 import { openPopup, closePopup } from "../utils/utils.js";
-import { FormValidator } from "../components/FormValidator.js"
+import FormValidator from "../components/FormValidator.js"
 const nickname = document.querySelector('#name')
 const job = document.querySelector('#job')
 const profileNickname = document.querySelector('.profile__nickname')
