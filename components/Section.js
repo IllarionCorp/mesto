@@ -5,11 +5,13 @@ export default class Section {
         this._container = containerSelector;
     }
 
-    rendererItems() {
-        
+    setItems() {
+        this._initArray.forEach(item => {
+            this._renderer(item)
+        });
     }
 
-    addItem() {
-
+    addItem(element) {
+        this._container.append(element);
     }
 }
