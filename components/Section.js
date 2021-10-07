@@ -5,10 +5,8 @@ export default class Section {
         this._container = containerSelector;
     }
 
-    setItems() {
-        this._initArray.forEach(item => {
-            this._renderer(item)
-        });
+    rendererItems() {
+
     }
 
     addItem(element) {

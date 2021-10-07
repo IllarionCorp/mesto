@@ -138,4 +138,4 @@ popupAddImage.addEventListener('submit',formSubmitHandlerAdd);
 addImageFormValidator.enableValidation();
 profileFormValidator.enableValidation();
 
-export { selectorsSettings, closeClickToOverlay, ECS_CODE };
+// export { selectorsSettings, closeClickToOverlay, ECS_CODE };

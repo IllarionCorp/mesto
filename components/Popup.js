@@ -2,9 +2,7 @@
 
 export default class Popup {
     constructor(popupSelector) {
-        this._popupSelector = popupSelector;
-        this._popup = document.querySelector('#image');
-        console.log(this._popupSelector);
+        this._popup = document.querySelector(popupSelector);
         this._closeIcon = this._popup.querySelector('.popup__close-button');
     }
 

@@ -7,8 +7,21 @@ export default class PopupWithForm extends Popup {
         this._form = this._popup.querySector('.fields');
     }
 
-    _getInputValues() {
-        
+    setEventListeners() {
+        super.setEventListeners();
+        this._popup.addEventListners('submit', () => {
+            this._submitCallBack();
+        })
+    }
 
+    _getInputValues() {
+        this._form.querySectorAll('.fields__input').forEach(input => {
+            input
+        });
+    }
+
+    close() {
+        super.close();
+        this._form.resset();
     }
 }
