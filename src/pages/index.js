@@ -14,7 +14,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 
-import 'index.css';
+import './index.css';
 
 const userInfo = new UserInfo({
   nickSelector: '.profile__nickname',
