@@ -2,7 +2,7 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import
- { 
+ {
   initCards,
   selectorsSettings,
   popupInputName,
@@ -14,6 +14,8 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 
+import 'index.css';
+
 const userInfo = new UserInfo({
   nickSelector: '.profile__nickname',
   jobSelector: '.profile__profession'
@@ -23,7 +25,7 @@ const userInfo = new UserInfo({
 
 const profilePopup = new PopupWithForm({
   popupSelector: '#profile',
-  submitCallBack: (data) => { 
+  submitCallBack: (data) => {
     userInfo.setUserInfo(data);
   }
 });
@@ -48,7 +50,7 @@ const imgPopup = new PopupWithImage('#image');
 
 function createCard(item) {
   const card = new Card( {
-    data: item, 
+    data: item,
     handleCardClick: () => {
       imgPopup.setEventListeners();
       imgPopup.open(item.name, item.link);
@@ -62,7 +64,7 @@ const defaultCardList = new Section({
   item: initCards,
   renderer: (item) => {
     defaultCardList.addItem(createCard(item));
-  }  
+  }
 }, ".elements");
 
 defaultCardList.rendererItems();
