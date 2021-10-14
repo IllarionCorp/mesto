@@ -47,13 +47,13 @@ const popupProfileHandler = () => {
 
 
 const imgPopup = new PopupWithImage('#image');
+imgPopup.setEventListeners();
 
 function createCard(item) {
   const card = new Card( {
     data: item,
     handleCardClick: () => {
-      imgPopup.setEventListeners();
-      imgPopup.open(item.name, item.link);
+      imgPopup.open(item.name, item.link, item.name);
     }
   }, '#card-template')
 

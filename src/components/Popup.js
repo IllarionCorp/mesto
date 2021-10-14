@@ -12,7 +12,7 @@ export default class Popup {
            }
     }
 
-    _closeClickToOverlay() {
+    _closeClickToOverlay(event) {
         if (event.target.classList.contains('popup_opened') === true && event.target.classList.contains('popup__container') === false) {
           this.close();
         }
@@ -22,8 +22,8 @@ export default class Popup {
         this._closeIcon.addEventListener('click',() => {
             this.close();
         });
-        this._popup.addEventListener('click',() => {
-            this._closeClickToOverlay();
+        this._popup.addEventListener('click',(event) => {
+            this._closeClickToOverlay(event);
         });
     }
 
