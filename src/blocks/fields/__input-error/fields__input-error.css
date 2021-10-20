@@ -13,6 +13,6 @@
     top: 32px;
 }
 
-.fields__input-error:last-of-type {
+.fields__input-error:nth-last-of-type(2) {
     top: 95px;
 }

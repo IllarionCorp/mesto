@@ -37,7 +37,7 @@ export default class Card {
  }
 
  _handleTrashClick() {
-  this._element.remove();
+  document.querySelector('#delete-card').classList.add('popup_opened');
  }
 
  _trashDelete(element) {

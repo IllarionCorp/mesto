@@ -67,12 +67,23 @@ export default class FormValidator {
    evt.preventDefault();
   });
   this.toggleBtn();
-  this._inputList.forEach((inputElement) => {
-   inputElement.addEventListener('input',() => {
+  if(this._inputList.length > 1) {
+   this._inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input',() => {
+     this._checkInputValidity(inputElement);
+     this.toggleBtn();
+    });
+   });
+  } else {
+   const inputElement = this._form.querySelector(this._inputSelector);
+   console.log(inputElement);
+   inputElement.addEventListener('input', () => {
     this._checkInputValidity(inputElement);
     this.toggleBtn();
-   });
-  });
+   })
+  }
+
+
  }
 
  clearFormError() {

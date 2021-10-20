@@ -8,20 +8,23 @@ import
   popupInputName,
   popupInputJob,
   openingBtnPopupAddCard,
-  openingBtnPopupProfile
+  openingBtnPopupProfile,
+  openingBtnPopupAvatar
 } from '../utils/constants.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
+import Avatar from '../components/Avatar.js';
 
 import './index.css';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
 const userInfo = new UserInfo({
   nickSelector: '.profile__nickname',
   jobSelector: '.profile__profession'
 });
 
-
+const avatar = new Avatar('.profile__avatar');
 
 const profilePopup = new PopupWithForm({
   popupSelector: '#profile',
@@ -31,9 +34,21 @@ const profilePopup = new PopupWithForm({
 });
 
 const profileValidator = new FormValidator(selectorsSettings, profilePopup.form);
-
-
 profilePopup.setEventListeners();
+
+const avatarPopup = new PopupWithForm({
+ popupSelector: '#avatar-update',
+ submitCallBack: (data) => {
+  avatar.setUrl(data);
+ }
+});
+
+const avatarValidator = new FormValidator(selectorsSettings, avatarPopup.form);
+avatarPopup.setEventListeners();
+
+const deletePopup = new PopupWithConfirm('#delete-card');
+
+deletePopup.setEventListeners();
 
 const popupProfileHandler = () => {
   const userData = userInfo.getUserInfo();
@@ -43,6 +58,12 @@ const popupProfileHandler = () => {
   profileValidator.toggleBtn();
   profileValidator.clearFormError();
   profilePopup.open();
+}
+
+const popupAvatarHandler = () => {
+ avatarValidator.toggleBtn();
+ avatarValidator.clearFormError();
+ avatarPopup.open();
 }
 
 
@@ -95,7 +116,8 @@ const popupAddCardHandler = () => {
 
 addImageValidator.enableValidation();
 profileValidator.enableValidation();
+avatarValidator.enableValidation();
 
 openingBtnPopupProfile.addEventListener('click', popupProfileHandler);
-
+openingBtnPopupAvatar.addEventListener('click', popupAvatarHandler);
 openingBtnPopupAddCard.addEventListener('click', popupAddCardHandler);
