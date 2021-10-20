@@ -49,13 +49,13 @@ const popupProfileHandler = () => {
 const imgPopup = new PopupWithImage('#image');
 imgPopup.setEventListeners();
 
-function createCard(item) {
+function createCard(item, cheker) {
   const card = new Card( {
     data: item,
     handleCardClick: () => {
       imgPopup.open(item.name, item.link, item.name);
     }
-  }, '#card-template')
+  }, '#card-template', cheker)
 
   return card.generateCard();
 }
@@ -63,7 +63,8 @@ function createCard(item) {
 const defaultCardList = new Section({
   item: initCards,
   renderer: (item) => {
-    defaultCardList.addItem(createCard(item));
+    defaultCardList.addItem(createCard(item, 'on'));
+
   }
 }, ".elements");
 
@@ -78,7 +79,7 @@ const addImgPopup = new PopupWithForm({
     link: link
   }
 
-  defaultCardList.addItem(createCard(data));
+  defaultCardList.addItem(createCard(data, 'off'));
   }
 });
 

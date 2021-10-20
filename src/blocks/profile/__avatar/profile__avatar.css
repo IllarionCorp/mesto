@@ -1,4 +1,8 @@
 .profile__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../../../images/Avatar.png);
     box-sizing: border-box;
     border-radius: 50%;
     width: 120px;
