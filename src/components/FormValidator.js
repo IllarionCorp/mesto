@@ -76,7 +76,6 @@ export default class FormValidator {
    });
   } else {
    const inputElement = this._form.querySelector(this._inputSelector);
-   console.log(inputElement);
    inputElement.addEventListener('input', () => {
     this._checkInputValidity(inputElement);
     this.toggleBtn();
