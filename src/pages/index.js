@@ -21,7 +21,7 @@ import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import Api from '../components/Api.js';
 
 const api = new Api('1');
-api.getInitCards();
+console.log(api.getInitCards());
 
 const userInfo = new UserInfo({
   nickSelector: '.profile__nickname',
@@ -89,7 +89,6 @@ const defaultCardList = new Section({
   item: initCards,
   renderer: (item) => {
     defaultCardList.addItem(createCard(item, 'on'));
-
   }
 }, ".elements");
 

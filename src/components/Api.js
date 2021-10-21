@@ -1,6 +1,7 @@
 export default class Api {
-    constructor(options) {
+    constructor(options, method) {
         this._options = options;
+        this._method = method;
     }
 
     getInitCards() {
@@ -14,7 +15,10 @@ export default class Api {
         })
         // .then((res) => )
         .then((result) => {
-            console.log(result);
-        })     
+           const objCards = JSON.parse(result);
+        })
+        // .catch((err) => {
+        //  console.log(err);
+        // })
     }
 }
