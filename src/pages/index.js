@@ -20,9 +20,15 @@ import './index.css';
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import Api from '../components/Api.js';
 
-const api = new Api('1');
-console.log(api.getInitCards());
+const api = new Api({
+ url: "https://mesto.nomoreparties.co/v1/cohort-29/cards",
+ headers: {
+  Authorization: "6dcc8eb5-b36f-4e58-925f-68f8caf1b64a",
+  "content-type": "application/json"
+ }
+ });
 
+ api.get();
 const userInfo = new UserInfo({
   nickSelector: '.profile__nickname',
   jobSelector: '.profile__profession'
