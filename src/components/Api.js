@@ -41,7 +41,7 @@ export default class Api {
      })
      .then((res) => {
       if(res.ok) {
-       return res.json;
+       return res.json();
       }
 
       return Promise.reject(`Ошибочка: ${res.status}`);
@@ -59,7 +59,7 @@ export default class Api {
      })
      .then((res) => {
       if(res.ok) {
-       return res.json;
+       return res.json();
       }
 
       return Promise.reject(`Ошибочка: ${res.status}`);
