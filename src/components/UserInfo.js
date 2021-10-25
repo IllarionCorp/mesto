@@ -6,7 +6,7 @@ export default class UserInfo {
 
     getUserInfo() {
         const name = this._nick.textContent;
-        const job = this._job.textContent; 
+        const job = this._job.textContent;
         const dataList = { name: name, job: job}
 
         return dataList;
@@ -14,6 +14,6 @@ export default class UserInfo {
 
     setUserInfo(data) {
         this._nick.textContent = data.name;
-        this._job.textContent = data.job;
+        this._job.textContent = data.about;
     }
 }

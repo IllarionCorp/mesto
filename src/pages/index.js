@@ -3,13 +3,13 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import
  {
-  initCards,
   selectorsSettings,
   popupInputName,
   popupInputJob,
   openingBtnPopupAddCard,
   openingBtnPopupProfile,
-  openingBtnPopupAvatar
+  openingBtnPopupAvatar,
+  profieNickSelector
 } from '../utils/constants.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
@@ -27,12 +27,23 @@ const api = new Api({
   "content-type": "application/json"
  }
  });
+const cards = api.getInitialCard();
 
- api.get();
+
+
+
+
+ api.getUserInfo()
+  .then((res) => {
+   document.querySelector(profieNickSelector).textContent = res.name;
+   document.querySelector('.profile__profession').textContent = res.about;
+  })
+
 const userInfo = new UserInfo({
   nickSelector: '.profile__nickname',
   jobSelector: '.profile__profession'
 });
+
 
 const avatar = new Avatar('.profile__avatar');
 
@@ -80,26 +91,36 @@ const popupAvatarHandler = () => {
 const imgPopup = new PopupWithImage('#image');
 imgPopup.setEventListeners();
 
-function createCard(item, cheker) {
+function createCard(item) {
   const card = new Card( {
     data: item,
     handleCardClick: () => {
       imgPopup.open(item.name, item.link, item.name);
     }
-  }, '#card-template', cheker)
+  }, '#card-template')
 
   return card.generateCard();
 }
 
-const defaultCardList = new Section({
-  item: initCards,
+// const defaultCardList = new Section({
+//   item: initCards,
+//   renderer: (item) => {
+//     defaultCardList.addItem(createCard(item));
+//   }
+// }, ".elements");
+
+// defaultCardList.rendererItems();
+
+cards.then(data => {
+ console.log(data);
+ const defaultCardsList = new Section({
+  item: data,
   renderer: (item) => {
-    defaultCardList.addItem(createCard(item, 'on'));
+   defaultCardsList.addItem(createCard(item));
   }
-}, ".elements");
-
-defaultCardList.rendererItems();
-
+ }, ".elements")
+ defaultCardsList.rendererItems();
+}).catch(err => alert(`Произошла СМЭРТ: ${err}`))
 
 const addImgPopup = new PopupWithForm({
   popupSelector: '#add',
