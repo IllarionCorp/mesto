@@ -1,10 +1,12 @@
 export default class Card {
- constructor({ data, handleCardClick  }, template, cheker){
+ constructor({ data, handleCardClick  }, template, myId){
   this._name = data.name;
   this._link = data.link;
   this._templateSelector = template;
   this._handleCardClick = handleCardClick;
-  this._cheker = cheker;
+  this._myId = myId.then(res => {return res._id;}).catch(err => alert(err));
+  this._id = data.owner._id;
+  console.log(this._myId);
  }
 
  _getTemplate() {
@@ -40,10 +42,14 @@ export default class Card {
   document.querySelector('#delete-card').classList.add('popup_opened');
  }
 
- _trashDelete(element) {
+ _trashDelete() {
   const trash = this._element.querySelector('.element__trash');
   trash.classList.add('element__trash_off');
  }
+_trashAdd() {
+ const trash = this._element.querySelector('.element__trash');
+ trash.classList.remove('element__trash_off');
+}
 
  generateCard() {
   this._element = this._getTemplate();
@@ -53,8 +59,10 @@ export default class Card {
   img.alt = this._name;
   this._element.querySelector('.element__place-name').textContent = this._name;
 
-  if(this._cheker === 'on') {
-   this._trashDelete(this._element);
+  if(this._id !== this._myId) {
+   this._trashDelete();
+  } else {
+   this._trashAdd()
   }
 
   return this._element;

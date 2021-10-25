@@ -20,24 +20,18 @@ import './index.css';
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import Api from '../components/Api.js';
 
-const api = new Api({
- url: "https://mesto.nomoreparties.co/v1/cohort-29/cards",
- headers: {
-  Authorization: "6dcc8eb5-b36f-4e58-925f-68f8caf1b64a",
-  "content-type": "application/json"
- }
- });
+const api = new Api();
+
 const cards = api.getInitialCard();
+const profileData =  api.getUserInfo();
 
 
 
-
-
- api.getUserInfo()
-  .then((res) => {
+profileData.then((res) => {
    document.querySelector(profieNickSelector).textContent = res.name;
    document.querySelector('.profile__profession').textContent = res.about;
-  })
+   document.querySelector('.profile__avatar').style.backgroundImage = `url('${res.avatar}')`;
+  }).catch(err => alert(`Произошла СМЭРТ: ${err}`))
 
 const userInfo = new UserInfo({
   nickSelector: '.profile__nickname',
@@ -50,7 +44,8 @@ const avatar = new Avatar('.profile__avatar');
 const profilePopup = new PopupWithForm({
   popupSelector: '#profile',
   submitCallBack: (data) => {
-    userInfo.setUserInfo(data);
+    api.patchUserInfo(data);
+    // userInfo.setUserInfo(data);
   }
 });
 
@@ -76,6 +71,7 @@ const popupProfileHandler = () => {
   popupInputName.value = userData.name;
   popupInputJob.value = userData.job;
 
+
   profileValidator.toggleBtn();
   profileValidator.clearFormError();
   profilePopup.open();
@@ -97,22 +93,12 @@ function createCard(item) {
     handleCardClick: () => {
       imgPopup.open(item.name, item.link, item.name);
     }
-  }, '#card-template')
+  }, '#card-template', profileData);
 
   return card.generateCard();
 }
 
-// const defaultCardList = new Section({
-//   item: initCards,
-//   renderer: (item) => {
-//     defaultCardList.addItem(createCard(item));
-//   }
-// }, ".elements");
-
-// defaultCardList.rendererItems();
-
 cards.then(data => {
- console.log(data);
  const defaultCardsList = new Section({
   item: data,
   renderer: (item) => {
@@ -129,8 +115,8 @@ const addImgPopup = new PopupWithForm({
     name: title,
     link: link
   }
-
-  defaultCardList.addItem(createCard(data, 'off'));
+  api.postNewCards(data);
+  // defaultCardList.addItem(createCard(data, 'off'));
   }
 });
 
