@@ -1,12 +1,16 @@
+
 export default class Card {
- constructor({ data, handleCardClick  }, template, myId){
+ constructor({ data, handleCardClick, handleLikeClick, handleTrashClick }, template, myId){
   this._name = data.name;
   this._link = data.link;
   this._templateSelector = template;
   this._handleCardClick = handleCardClick;
-  this._myId = myId.then(res => {return res._id;}).catch(err => alert(err));
+  this._handleLikeClick = handleLikeClick;
+  this._handleTrashClick = handleTrashClick;
+  this._myId = myId;
   this._id = data.owner._id;
-  console.log(this._myId);
+  this._likes = data.likes;
+  this._cardId = data._id;
  }
 
  _getTemplate() {
@@ -21,12 +25,11 @@ export default class Card {
 
  _setEventListners() {
   this._element.querySelector('.element__like').addEventListener('click', () => {
-   this._handleLikeClick();
+   this._handleLikeClick(this._cardId);
   });
 
   this._element.querySelector('.element__trash').addEventListener('click', () => {
-   this._handleTrashClick();
-
+   this._handleTrashClick(this._cardId);
   });
 
   this._element.querySelector('.element__image').addEventListener('click', () => {
@@ -34,13 +37,13 @@ export default class Card {
   });
  }
 
- _handleLikeClick() {
-  this._element.querySelector('.element__like').classList.toggle('element__like_active');
- }
+ // _handleLikeClick() {
+ //  this._element.querySelector('.element__like').classList.toggle('element__like_active');
+ // }
 
- _handleTrashClick() {
-  document.querySelector('#delete-card').classList.add('popup_opened');
- }
+ // _handleTrashClick() {
+ //  document.querySelector('#delete-card').classList.add('popup_opened');
+ // }
 
  _trashDelete() {
   const trash = this._element.querySelector('.element__trash');
@@ -58,11 +61,11 @@ _trashAdd() {
   img.src = this._link;
   img.alt = this._name;
   this._element.querySelector('.element__place-name').textContent = this._name;
-
-  if(this._id !== this._myId) {
-   this._trashDelete();
+  this._element.querySelector('.element__like-counter').textContent = this._likes.length;
+  if(this._id === this._myId) {
+   this._trashAdd();
   } else {
-   this._trashAdd()
+   this._trashDelete();
   }
 
   return this._element;

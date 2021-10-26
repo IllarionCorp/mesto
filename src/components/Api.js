@@ -1,13 +1,13 @@
+import Avatar from "./Avatar";
+
 export default class Api {
-    constructor() {
-     this._headers =  {
-      Authorization: "3e854f17-4e78-4803-83c1-6cbecd942932",
-      'Content-Type': 'application/json'
-     }
+    constructor(options) {
+     this._url = options.url;
+     this._headers =  options.headers;
     }
 
     getInitialCard() {
-     return fetch("https://mesto.nomoreparties.co/v1/cohort-29/cards", {
+     return fetch(this._url + "/cards", {
       headers: this._headers
      })
      .then((res) => {
@@ -19,7 +19,7 @@ export default class Api {
     };
 
     getUserInfo() {
-     return fetch("https://mesto.nomoreparties.co/v1/cohort-29/users/me", {
+     return fetch(this._url + "/users/me", {
       headers: this._headers
      })
      .then((res) => {
@@ -31,12 +31,47 @@ export default class Api {
     }
 
     patchUserInfo(data) {
-     return fetch("https://mesto.nomoreparties.co/v1/cohort-29/users/me", {
-      method: 'PATH',
+     return fetch(this._url + "/users/me", {
+      method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
        name: data.name,
-       about: data.job
+       about: data.about
+      })
+      })
+     .then((res) => {
+      if(res.ok) {
+       return res.json();
+      }
+
+      return Promise.reject(`Ошибочка: ${res.status}`);
+     })
+    }
+
+    patchAvatar(data) {
+     return fetch(this._url + "/users/me/avatar", {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+       avatar: data.avatar
+      })
+      })
+     .then((res) => {
+      if(res.ok) {
+       return res.json();
+      }
+
+      return Promise.reject(`Ошибочка: ${res.status}`);
+     })
+    }
+
+    postNewCards(data) {
+     return fetch(this._url + "/cards", {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+       name: data.name,
+       link: data.link
       })
      })
      .then((res) => {
@@ -48,14 +83,10 @@ export default class Api {
      })
     }
 
-    postNewCards(data) {
-     return fetch("https://mesto.nomoreparties.co/v1/cohort-29/cards", {
-      method: 'POST',
+    deleteCard(id) {
+     return fetch(this._url + "/cards/" + id, {
+      method: 'DELETE',
       headers: this._headers,
-      body: JSON.stringify({
-       name: data.name,
-       link: data.link
-      })
      })
      .then((res) => {
       if(res.ok) {

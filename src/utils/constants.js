@@ -9,7 +9,7 @@ export const selectorsSettings = {
 }
 
 export const popupInputName = document.querySelector('#name');
-export const popupInputJob = document.querySelector('#job');
+export const popupInputAbout = document.querySelector('#about');
 export const openingBtnPopupProfile = document.querySelector('.profile__button-edite');
 export const openingBtnPopupAddCard = document.querySelector('.profile__button-add');
 export const openingBtnPopupAvatar = document.querySelector('.profile__button-edite-avatar');

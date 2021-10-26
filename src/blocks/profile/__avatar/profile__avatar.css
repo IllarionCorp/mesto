@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(../../../images/Avatar.png);
+    background-image: none;
     box-sizing: border-box;
     border-radius: 50%;
     width: 120px;
