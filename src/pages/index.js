@@ -117,26 +117,18 @@ function createCard(item) {
   return card.generateCard();
 }
 
-cards.then(data => {
+ cards.then(data => {
   const defaultCardsList = new Section({
-  item: data,
-  renderer: (item) => {
-   defaultCardsList.addItem(createCard(item));
-  }
- }, ".elements")
- defaultCardsList.rendererItems();
+   item: data,
+   renderer: (item) => {
+    defaultCardsList.addItem(createCard(item));
+   }
+  }, ".elements")
+  defaultCardsList.rendererItems();
 }).catch(err => alert(`Произошел труньк: ${err}`))
 
-function newCard(data) {
- const card = new Section({
-  item: data,
-  renderer: (item) => {
-   console.log(item);
-   card.addItem(createCard(item));
-  }
- }, ".element");
- return card;
-}
+
+
 
 const addImgPopup = new PopupWithForm({
   popupSelector: '#add',
@@ -145,8 +137,17 @@ const addImgPopup = new PopupWithForm({
     name: title,
     link: link
   }
-  // newCard(data);
-  api.postNewCards(data);
+ const newCard = api.postNewCards(data);
+
+ newCard
+ .then(data => {
+  const card = new Section({
+   item: data,
+   renderer:() => card.addItem(createCard(data))
+  }, '.elements');
+  card.rendererItems();
+ }).catch(err => `СМЭРТ: ${err}`)
+
  }
 });
 
