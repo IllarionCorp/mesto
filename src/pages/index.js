@@ -123,15 +123,19 @@ function createCard(item) {
   return card.generateCard();
 }
 
-cards.then(data => {
-  const defaultCardsList = new Section({
-  item: data,
+const cardList = new Section ({
   renderer: (item) => {
-   defaultCardsList.addItem(createCard(item));
+    cardList.addItem(createCard(item));
   }
- }, ".elements")
- defaultCardsList.rendererItems();
-}).catch(err => alert(`Произошел труньк: ${err}`))
+}, '.elements')
+
+cards.then(data => {
+  console.log(data);
+  cardList.rendererItems(data);
+}).catch(err => {
+  alert(`СМЭРТ по отрисовки карточек: ${err}`);
+})
+
 
 const addImgPopup = new PopupWithForm({
   popupSelector: '#add',
@@ -140,8 +144,14 @@ const addImgPopup = new PopupWithForm({
     name: title,
     link: link
   }
-
-  api.postNewCards(data);
+  
+  api.postNewCards(data).then(res => {
+    cardList.addItemNew(createCard(res));
+  })
+  .catch(err => {
+    alert(`СМЭРТ новой карточки: ${err}`)
+  })
+  .finally( addImgPopup.close())  
  }
 });
 
