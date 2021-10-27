@@ -1,10 +1,10 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithConfirm extends Popup {
- constructor(popupSelector, api) {
+ constructor({popupSelector, callBack}) {
   super(popupSelector);
   this._form = this._popup.querySelector('.fields');
-  this._api = api;
+  this._callBack = callBack;
  }
 
  getCardId(card) {
@@ -15,7 +15,7 @@ export default class PopupWithConfirm extends Popup {
   super.setEventListeners();
   this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._api.deleteCard(this._id);
+      this._callBack(this._id);
       this.close();
   });
 }

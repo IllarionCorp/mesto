@@ -14,7 +14,7 @@ export default class Api {
       if(res.ok) {
        return res.json();
       }
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return Promise.reject(`СМЭРТ получения данных карточек: ${res.status}`);
      })
     };
 
@@ -26,7 +26,7 @@ export default class Api {
       if(res.ok) {
        return res.json();
       }
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return Promise.reject(`СМЭРТ получения данных профиля: ${res.status}`);
      })
     }
 
@@ -44,7 +44,7 @@ export default class Api {
        return res.json();
       }
 
-      return Promise.reject(`Ошибочка: ${res.status}`);
+      return Promise.reject(`СМЭРТ изменения профиля: ${res.status}`);
      })
     }
 
@@ -61,7 +61,7 @@ export default class Api {
        return res.json();
       }
 
-      return Promise.reject(`Ошибочка: ${res.status}`);
+      return Promise.reject(`СМЭРТ изменения аватара: ${res.status}`);
      })
     }
 
@@ -79,7 +79,35 @@ export default class Api {
        return res.json();
       }
 
-      return Promise.reject(`Ошибочка: ${res.status}`);
+      return Promise.reject(`СМЭРТ добавления карточки: ${res.status}`);
+     })
+    }
+
+    putMyLike(cardId) {
+     return fetch(this._url + "/cards/likes/" + cardId, {
+      method: 'PUT',
+      headers: this._headers
+     })
+     .then(res => {
+      if(res.ok) {
+       return res.json();
+      }
+
+      return Promise.reject(`СМЭРТ постановки лайка: ${res.status}`)
+     })
+    }
+
+    deleteMyLike(cardId) {
+     return fetch(this._url + "/cards/likes/" + cardId, {
+      method: 'DELETE',
+      headers: this._headers
+     })
+     .then(res => {
+      if(res.ok) {
+       return res.json();
+      }
+
+      return Promise.reject(`СМЭРТ удаления лайка: ${res.status}`);
      })
     }
 
@@ -93,7 +121,7 @@ export default class Api {
        return res.json();
       }
 
-      return Promise.reject(`Ошибочка: ${res.status}`);
+      return Promise.reject(`СМЭРТ удаления карточки: ${res.status}`);
      })
     }
 };

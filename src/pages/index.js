@@ -72,7 +72,12 @@ const avatarPopup = new PopupWithForm({
 const avatarValidator = new FormValidator(selectorsSettings, avatarPopup.form);
 avatarPopup.setEventListeners();
 
-const deletePopup = new PopupWithConfirm('#delete-card', api);
+const deletePopup = new PopupWithConfirm({
+ popupSelector: '#delete-card',
+ callBack: (id) => {
+  api.deleteCard(id);
+ }
+});
 
 
 
@@ -104,8 +109,9 @@ function createCard(item) {
       imgPopup.open(item.name, item.link, item.name);
     },
 
-    handleLikeClick: (card) => {
-     card.querySelector('.element__like').classList.toggle('element__like_active');
+    handleLikeClick: (data) => {
+     console.log(item.likes);
+     api.putMyLike(data.id);
     },
 
     handleTrashClick: (card) => {
@@ -117,18 +123,15 @@ function createCard(item) {
   return card.generateCard();
 }
 
- cards.then(data => {
+cards.then(data => {
   const defaultCardsList = new Section({
-   item: data,
-   renderer: (item) => {
-    defaultCardsList.addItem(createCard(item));
-   }
-  }, ".elements")
-  defaultCardsList.rendererItems();
+  item: data,
+  renderer: (item) => {
+   defaultCardsList.addItem(createCard(item));
+  }
+ }, ".elements")
+ defaultCardsList.rendererItems();
 }).catch(err => alert(`Произошел труньк: ${err}`))
-
-
-
 
 const addImgPopup = new PopupWithForm({
   popupSelector: '#add',
@@ -137,17 +140,8 @@ const addImgPopup = new PopupWithForm({
     name: title,
     link: link
   }
- const newCard = api.postNewCards(data);
 
- newCard
- .then(data => {
-  const card = new Section({
-   item: data,
-   renderer:() => card.addItem(createCard(data))
-  }, '.elements');
-  card.rendererItems();
- }).catch(err => `СМЭРТ: ${err}`)
-
+  api.postNewCards(data);
  }
 });
 

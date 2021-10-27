@@ -25,7 +25,11 @@ export default class Card {
 
  _setEventListners() {
   this._element.querySelector('.element__like').addEventListener('click', () => {
-   this._handleLikeClick(this._cardId);
+   this._handleLikeClick({
+    id: this._cardId,
+    mtId: this._myId
+   });
+   this._element.querySelector('.element__like').classList.toggle('element__like_active');
   });
 
   this._element.querySelector('.element__trash').addEventListener('click', () => {
