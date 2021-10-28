@@ -4,6 +4,6 @@ export default class Avatar{
  }
 
  setUrl(link) {
-  this._avatar.style.backgroundImage = `url('${link.avatar}')`
+  this._avatar.style.backgroundImage = `url('${link}')`
  }
 }

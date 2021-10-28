@@ -13,10 +13,10 @@
     color: black;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding-bottom: 13px;
-    margin-bottom: 30px;
+    margin-top: 30px;
 }
 
-.fields__input:last-of-type {
-    margin-bottom: 0;
+.fields__input:first-of-type {
+    margin-top: 0;
 }
 

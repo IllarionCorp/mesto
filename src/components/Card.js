@@ -1,4 +1,5 @@
 
+
 export default class Card {
  constructor({ data, handleCardClick, handleLikeClick, handleTrashClick }, template, myId){
   this._name = data.name;
@@ -11,6 +12,7 @@ export default class Card {
   this._id = data.owner._id;
   this._likes = data.likes;
   this._cardId = data._id;
+  
  }
 
  _getTemplate() {
@@ -27,9 +29,9 @@ export default class Card {
   this._element.querySelector('.element__like').addEventListener('click', () => {
    this._handleLikeClick({
     id: this._cardId,
-    mtId: this._myId
+    myId: this._myId,
+    likes: this._likes
    });
-   this._element.querySelector('.element__like').classList.toggle('element__like_active');
   });
 
   this._element.querySelector('.element__trash').addEventListener('click', () => {
@@ -41,13 +43,23 @@ export default class Card {
   });
  }
 
- // _handleLikeClick() {
- //  this._element.querySelector('.element__like').classList.toggle('element__like_active');
- // }
+setLike() {
+    this._element.querySelector('.element__like').classList.add('element__like_active');
+    this.Like = true;
+}
 
- // _handleTrashClick() {
- //  document.querySelector('#delete-card').classList.add('popup_opened');
- // }
+deleteLike() {
+    this._element.querySelector('.element__like').classList.remove('element__like_active');
+    this.Like = false;
+}
+
+ _toggleStateLike() {
+     if (this._likes.find((like) => like._id === this._myId)) {
+        this.setLike();
+    } else {
+        this.deleteLike();
+    }
+}
 
  _trashDelete() {
   const trash = this._element.querySelector('.element__trash');
@@ -58,6 +70,10 @@ _trashAdd() {
  trash.classList.remove('element__trash_off');
 }
 
+updateLikesCounter(likes) {
+    this._element.querySelector('.element__like-counter').textContent = likes;
+}
+
  generateCard() {
   this._element = this._getTemplate();
   this._setEventListners();
@@ -65,14 +81,19 @@ _trashAdd() {
   img.src = this._link;
   img.alt = this._name;
   this._element.querySelector('.element__place-name').textContent = this._name;
-  this._element.querySelector('.element__like-counter').textContent = this._likes.length;
+  this.updateLikesCounter(this._likes.length);
   if(this._id === this._myId) {
    this._trashAdd();
   } else {
    this._trashDelete();
   }
+  this._toggleStateLike();
 
   return this._element;
+ }
+
+ removeCard() {
+     this._element.remove()
  }
 }
 
