@@ -1,5 +1,3 @@
-import Avatar from "./Avatar";
-
 export default class Api {
     constructor(options) {
      this._url = options.url;
@@ -13,6 +11,9 @@ export default class Api {
            return Promise.reject(`СМЭРТ: ${res.status}`);
     }      
     
+    getAllInfo() {
+        return Promise.all([this.getInitialCard(), this.getUserInfo()]);
+    }
 
     getInitialCard() {
      return fetch(this._url + "/cards", {

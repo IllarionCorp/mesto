@@ -1,7 +1,10 @@
+
+
 export default class UserInfo {
-    constructor({ nickSelector, aboutSelector }) {
+    constructor({ nickSelector, aboutSelector, avatarSelector }) {
         this._nick = document.querySelector(nickSelector);
         this._about = document.querySelector(aboutSelector);
+        this._avatar = document.querySelector(avatarSelector);
     }
 
     getUserInfo() {
@@ -15,6 +18,9 @@ export default class UserInfo {
     setUserInfo(data) {
         this._nick.textContent = data.name;
         this._about.textContent = data.about;
+    }
 
+    setUserAvatar(data) {
+        this._avatar.style.backgroundImage = `url('${data.avatar}')`
     }
 }

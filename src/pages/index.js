@@ -8,15 +8,14 @@ import
   popupInputAbout,
   openingBtnPopupAddCard,
   openingBtnPopupProfile,
-  openingBtnPopupAvatar,
-  profieNickSelector, 
+  openingBtnPopupAvatar, 
   addSubmitBtn,
   profileSubmitBtn
 } from '../utils/constants.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
-import Avatar from '../components/Avatar.js';
+
 
 import './index.css';
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
@@ -31,44 +30,35 @@ const api = new Api({
  }
 });
 
-const cards = api.getInitialCard();
-const profileData =  api.getUserInfo();
+api.getAllInfo()
+  .then(([resCard, resProfile]) => {
+    userInfo.setUserInfo(resProfile);
+    userInfo.setUserAvatar(resProfile);
+    id = resProfile._id
+    cardList.rendererItems(resCard);
+  })
+  .catch(err => alert(`СМЭРТ загрузки начальных данных: ${err}`))
 
 let id;
-
-
-profileData.then((res) => {
-   
-   document.querySelector(profieNickSelector).textContent = res.name;
-   document.querySelector('.profile__profession').textContent = res.about;
-   document.querySelector('.profile__avatar').style.backgroundImage = `url('${res.avatar}')`;
-   id = res._id;
-  })
-  .catch(err => alert(`Произошла СМЭРТ: ${err}`))
-  .finally(() => {
-    profileSubmitBtn.textContent = "Сохранить"
-  })
-
 const userInfo = new UserInfo({
   nickSelector: '.profile__nickname',
-  aboutSelector: '.profile__profession'
+  aboutSelector: '.profile__profession', 
+  avatarSelector: '.profile__avatar'
 });
 
-
-const avatar = new Avatar('.profile__avatar');
 const deletePopup = new PopupWithConfirm('#delete-card');
 deletePopup.setEventListeners();
 const profilePopup = new PopupWithForm({
   popupSelector: '#profile',
   submitCallBack: (data) => {
-    userInfo.setUserInfo(data);
+    profileSubmitBtn.textContent = "Сохранение..."
     api.patchUserInfo(data)
-      .then(() => {
-        profileSubmitBtn.textContent = "Сохранение..."
+      .then((res) => {
+        userInfo.setUserInfo(res);
+        profilePopup.close()
       })
       .catch(err => alert(`СМЭРТ сохранения профиля: ${err}`))
       .finally(() => {
-        profilePopup.close()
         profileSubmitBtn.textContent = "Сохранить"
       })
   }
@@ -80,16 +70,15 @@ profilePopup.setEventListeners();
 const avatarPopup = new PopupWithForm({
  popupSelector: '#avatar-update',
  submitCallBack: (data) => {
- 
+  document.querySelector('#avatar-button').textContent = "Сохранение...";
   api.patchAvatar(data.avatar)
   .then((res) => {
-    document.querySelector('#avatar-button').textContent = "Сохранение...";
-    avatar.setUrl(res.avatar);
+    userInfo.setUserAvatar(res);
+    avatarPopup.close();
   })
   .catch(err => alert(`Смэрт аватара: ${err}`))
   .finally(() => {
     document.querySelector('#avatar-button').textContent = "Сохранить";
-    avatarPopup.close()
   });
  }
 });
@@ -129,23 +118,24 @@ function createCard(item) {
 
     handleLikeClick: (data) => {
       if (card.Like) {
-        
           api.deleteMyLike(data.id)
         .then(res => {
           card.deleteLike();
           card.updateLikesCounter(res.likes.length);
         })
+        .catch(err => alert(`Смэрт снятия лайка: ${err}`))
       } else {
         api.putMyLike(data.id)
         .then((res) => {
           card.setLike();
           card.updateLikesCounter(res.likes.length);
         })
+        .catch(err => `СМЭРТ установки лайка: ${err}`)
       }
     },
 
     handleTrashClick: (id) => {
-     document.querySelector('#delete-card').classList.add('popup_opened');
+     deletePopup.open();
      deletePopup.submitClick(() => {
        api.deleteCard(id)
        .then(() => {
@@ -153,9 +143,6 @@ function createCard(item) {
          deletePopup.close();
        })
        .catch(err => alert(`СМЭРТ удаления карточки: ${err}`))
-       .finally(() => {
-         
-       })
      })
     }
   }, '#card-template', id);
@@ -169,13 +156,6 @@ const cardList = new Section ({
   }
 }, '.elements')
 
-cards.then(data => {
-  console.log(data);
-  cardList.rendererItems(data);
-}).catch(err => {
-  alert(`СМЭРТ по отрисовки карточек: ${err}`);
-})
-
 
 const addCardPopup = new PopupWithForm({
   popupSelector: '#add',
@@ -184,16 +164,16 @@ const addCardPopup = new PopupWithForm({
     name: title,
     link: link
   }
-  
+  addSubmitBtn.textContent = "Создание..."
   api.postNewCards(data).then(res => {
-    addSubmitBtn.textContent = "Создание..."
     cardList.addItemNew(createCard(res));
+    addCardPopup.close()
   })
   .catch(err => {
     alert(`СМЭРТ новой карточки: ${err}`)
   })
   .finally(() =>{
-    addCardPopup.close()
+    
     addSubmitBtn.textContent = "Создать" 
   })  
  }
